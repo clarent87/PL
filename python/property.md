@@ -1,0 +1,1 @@
+https://medium.com/@hckcksrl/python-property-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-89eb0f0e2e56
