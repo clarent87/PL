@@ -8,7 +8,7 @@
 
 // default parameter
 
-// µğÆúÆ® °ªÀº ÇÔ¼ö¿Í ¸¶Âù°¡Áö·Î ¿À¸¥ÂÊºÎÅÍ Ã¤¿öÁà¾ßÇÑ´Ù. 
+// ë””í´íŠ¸ ê°’ì€ í•¨ìˆ˜ì™€ ë§ˆì°¬ê°€ì§€ë¡œ ì˜¤ë¥¸ìª½ë¶€í„° ì±„ì›Œì¤˜ì•¼í•œë‹¤. 
 template<typename T = int, int N = 10> struct Stack
 {
 };
@@ -19,7 +19,7 @@ int main()
 
 	Stack<int> s2; 
 
-	Stack<> s3; // ¸ğµç ÀÎÀÚ¸¦ µğÆúÆ® °ª »ç¿ë.
+	Stack<> s3; // ëª¨ë“  ì¸ìë¥¼ ë””í´íŠ¸ ê°’ ì‚¬ìš©.
 }
 
-// ÂüÁ¶ : https://boycoding.tistory.com/222
+// ì°¸ì¡° : https://boycoding.tistory.com/222

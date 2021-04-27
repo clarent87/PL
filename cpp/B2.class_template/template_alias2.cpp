@@ -10,7 +10,7 @@
 // template alias
 template<typename T> class List {};
 
-// typedef : type º°ÄªÀ» ¸¸µéÁö¸¸... template ÀÇ º°ÄªÀ» ¸¸µé¼ö ¾ø´Ù.
+// typedef : type ë³„ì¹­ì„ ë§Œë“¤ì§€ë§Œ... template ì˜ ë³„ì¹­ì„ ë§Œë“¤ìˆ˜ ì—†ë‹¤.
 typedef List<int> IntList; // ok..
 
 //template<typename T> typedef List<T> MyList<T>;  // error. 
@@ -24,12 +24,12 @@ template<typename T, typename U> struct Pair{
 };
 
 // typedef Pair Point ; // error
-// using Point = Pair // ±Ùµ¥ Pair°¡ ÅÛÇÃ¸´ ÀÓÀ» ¾Ë·ÁÁà¾ßÇÔ. ( usingÀº type , ÅÛÇÃ¸´ ¸ğµÎÀÇ º°Äª ¸¸µå´Â °Í¿¡ °¡´É)
-					  // µû¶ó¼­  using Point = Pair<T,U>; ÀÎµ¥.. T¿Í U°¡ ¹«¾ùÀÎÁö.. Pair°¡ ÅÛÇÃ¸´ÀÎÁö ¾Ë·ÁÁà¾ßÇØ¼­
-					  // template<typename T, typename U>°¡ ÇÊ¿ä.
+// using Point = Pair // ê·¼ë° Pairê°€ í…œí”Œë¦¿ ì„ì„ ì•Œë ¤ì¤˜ì•¼í•¨. ( usingì€ type , í…œí”Œë¦¿ ëª¨ë‘ì˜ ë³„ì¹­ ë§Œë“œëŠ” ê²ƒì— ê°€ëŠ¥)
+					  // ë”°ë¼ì„œ  using Point = Pair<T,U>; ì¸ë°.. Tì™€ Uê°€ ë¬´ì—‡ì¸ì§€.. Pairê°€ í…œí”Œë¦¿ì¸ì§€ ì•Œë ¤ì¤˜ì•¼í•´ì„œ
+					  // template<typename T, typename U>ê°€ í•„ìš”.
 template<typename T, typename U> using Point = Pair<T,U>;
 
-// ¾Æ·¡Ã³·³ ÅÛÇÃ¸´ ÆÄ¶ó¸ŞÅÍÀÎÀÚ °íÁ¤µµ °¡´É
+// ì•„ë˜ì²˜ëŸ¼ í…œí”Œë¦¿ íŒŒë¼ë©”í„°ì¸ì ê³ ì •ë„ ê°€ëŠ¥
 template<typename T> using Point2 = Pair<T,T>;
 template<typename T> using Point3 = Pair<T,short>;
 
@@ -46,6 +46,6 @@ int main()
 }
 
 
-// ÇÙ½É Á¤¸®
-// 1. typedef : typeÀÇ º°Äª¸¸ ¸¸µé¼ö ÀÖ´Ù. 
-// 2. using : type »Ó¾Æ´Ï¶ó templateÀÇ º°Äªµµ ¸¸µé¼ö ÀÖ´Ù. 
+// í•µì‹¬ ì •ë¦¬
+// 1. typedef : typeì˜ ë³„ì¹­ë§Œ ë§Œë“¤ìˆ˜ ìˆë‹¤. 
+// 2. using : type ë¿ì•„ë‹ˆë¼ templateì˜ ë³„ì¹­ë„ ë§Œë“¤ìˆ˜ ìˆë‹¤. 

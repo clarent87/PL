@@ -6,22 +6,22 @@
 * Copyright (C) 2017 CODENURI Inc. All rights reserved.
 */
 
-// non-type(°ª) parameter
+// non-type(ê°’) parameter
 
-// 1. Á¤¼öÇü »ó¼ö(½Ç¼ö ¾ÈµÊ.)
+// 1. ì •ìˆ˜í˜• ìƒìˆ˜(ì‹¤ìˆ˜ ì•ˆë¨.)
 template<int N> class Test1 {};
 
-// 2. enum »ó¼ö
+// 2. enum ìƒìˆ˜
 enum Color { red = 1, green = 2};
 template<Color> class Test2 {};
 
-// 3. Æ÷ÀÎÅÍ : Áö¿ªº¯¼ö ÁÖ¼Ò¾ÈµÊ.. Àü¿ªº¯¼öÁÖ¼Ò´Â °¡´É.. 
-//			   ÀûÈ®È÷´Â no linkage ¸¦ °¡Áö´Â º¯¼ö ÁÖ¼Ò°¡ ¾ÈµÊ..
+// 3. í¬ì¸í„° : ì§€ì—­ë³€ìˆ˜ ì£¼ì†Œì•ˆë¨.. ì „ì—­ë³€ìˆ˜ì£¼ì†ŒëŠ” ê°€ëŠ¥.. 
+//			   ì í™•íˆëŠ” no linkage ë¥¼ ê°€ì§€ëŠ” ë³€ìˆ˜ ì£¼ì†Œê°€ ì•ˆë¨..
 template<int*> class Test3 {};
 
 int x = 0;
 
-// 4. ÇÔ¼ö Æ÷ÀÎÅÍ..
+// 4. í•¨ìˆ˜ í¬ì¸í„°..
 template<int(*)(void)> class Test4 {};
 
 int main()
@@ -29,13 +29,13 @@ int main()
 	int n = 10;
 
 	Test1<10> t1; // ok
-	//Test1<n>  t2; // error. º¯¼ö ¾ÈµÊ.
+	//Test1<n>  t2; // error. ë³€ìˆ˜ ì•ˆë¨.
 	Test2<red> t3; // ok
 
-	//Test3<&n> t4; // error; ÅÛÇÃ¸´Àº ÄÄÆÄÀÏ Å¸ÀÓ¿¡ ¸ğµç°Ô °áÁ¤µÇ¾î¾ß ÇÔ µû¶ó¼­ stack ÁÖ¼Ò´Â error.
+	//Test3<&n> t4; // error; í…œí”Œë¦¿ì€ ì»´íŒŒì¼ íƒ€ì„ì— ëª¨ë“ ê²Œ ê²°ì •ë˜ì–´ì•¼ í•¨ ë”°ë¼ì„œ stack ì£¼ì†ŒëŠ” error.
 	Test3<&x> t5; // ok
 
 	Test4<&main> t6;// ok
 }
 
-// ÀÌ·±°Å ¾²´Â È°¿ëÀº µŞÂÊ¿¡¼­ ³ª¿Â´Ù°í ÇÔ.
+// ì´ëŸ°ê±° ì“°ëŠ” í™œìš©ì€ ë’·ìª½ì—ì„œ ë‚˜ì˜¨ë‹¤ê³  í•¨.

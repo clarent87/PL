@@ -17,7 +17,7 @@ public:
 	void push(T v) { cout << "T" << endl; }
 };
 
-// 2. partial specialization( ºÎºĞ Æ¯¼öÈ­, ºÎºĞ Àü¹®È­)
+// 2. partial specialization( ë¶€ë¶„ íŠ¹ìˆ˜í™”, ë¶€ë¶„ ì „ë¬¸í™”)
 template<typename T> class Stack<T*>
 {
 public:
@@ -25,7 +25,7 @@ public:
 };
 
 // 3. specialization
-template<> class Stack<char*> // typename T´Â »èÁ¦, ¹¹ ÅÛÇÃ¸´ ÀÎÀÚ¸¦ ¹ŞÀ»²« ¾Æ´Ï´Ï±î.. 
+template<> class Stack<char*> // typename TëŠ” ì‚­ì œ, ë­ í…œí”Œë¦¿ ì¸ìë¥¼ ë°›ì„ê»€ ì•„ë‹ˆë‹ˆê¹Œ.. 
 {
 public:
 	void push(char* v) { cout << "char*" << endl; }

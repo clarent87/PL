@@ -10,7 +10,7 @@
 #include <type_traits>
 using namespace std;
 
-// bool ±â¹İÀÇ type selection ±â¼ú.
+// bool ê¸°ë°˜ì˜ type selection ê¸°ìˆ .
 template<bool, typename T, typename U> struct IfThenElse
 {
 	typedef T type;
@@ -27,7 +27,7 @@ template<int N> struct Bit
 
 	using data_type = typename IfThenElse< (N <= 8), char, unsigned int>::type;
 
-	// c++Ç¥ÁØÀÇ conditional¸¦ ½áµµ µÈ´Ù. 
+	// c++í‘œì¤€ì˜ conditionalë¥¼ ì¨ë„ ëœë‹¤. 
 	// using data_type = typename conditional< (N <= 8), char, unsigned int>::type;
 
 	data_type data;
@@ -35,13 +35,13 @@ template<int N> struct Bit
 
 int main()
 {
-	Bit<8>  b1; // 8bit¸¦ °ü¸®ÇÏ±â À§ÇÑ °´Ã¼
-	Bit<32> b2; // 32bit¸¦ °ü¸®ÇÏ±â À§ÇÑ °´Ã¼
+	Bit<8>  b1; // 8bitë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ê°ì²´
+	Bit<32> b2; // 32bitë¥¼ ê´€ë¦¬í•˜ê¸° ìœ„í•œ ê°ì²´
 
 	cout << sizeof(b1) << endl;
 	cout << sizeof(b2) << endl;
 
-	// ¹®Á¦ (ifthenelse ÁßÃ¸À» ÀÌ¿ëÇÏ¸é µÉ°Å °°À½)
+	// ë¬¸ì œ (ifthenelse ì¤‘ì²©ì„ ì´ìš©í•˜ë©´ ë ê±° ê°™ìŒ)
 	Bit<16> b3;
-	cout << sizeof(b3) << endl; // 2°¡ ³ª¿À°Ô ¾î¶»°Ô ÇÒ±î?
+	cout << sizeof(b3) << endl; // 2ê°€ ë‚˜ì˜¤ê²Œ ì–´ë–»ê²Œ í• ê¹Œ?
 }

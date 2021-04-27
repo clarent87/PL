@@ -6,14 +6,14 @@
 * Copyright (C) 2017 CODENURI Inc. All rights reserved.
 */
 
-// template ÆÄ¶ó¹ÌÅÍÀÇ Á¾·ù
+// template íŒŒë¼ë¯¸í„°ì˜ ì¢…ë¥˜
 
 // 1. type 
-// 2. °ª(non-type) : Á¤¼öÇü »ó¼ö, enum »ó¼ö, Æ÷ÀÎÅÍ, ÇÔ¼ö Æ÷ÀÎÅÍ, C++17 auto
+// 2. ê°’(non-type) : ì •ìˆ˜í˜• ìƒìˆ˜, enum ìƒìˆ˜, í¬ì¸í„°, í•¨ìˆ˜ í¬ì¸í„°, C++17 auto
 // 3. template 
 
-// "default °ª »ç¿ë°¡´É."
+// "default ê°’ ì‚¬ìš©ê°€ëŠ¥."
 
-// C++11 : °¡º¯ÀÎÀÚ ÅÛÇÃ¸´
+// C++11 : ê°€ë³€ì¸ì í…œí”Œë¦¿
 template<typename ... T> class Test {};
 template<int ... N> class Test {};
