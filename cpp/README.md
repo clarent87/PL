@@ -23,5 +23,8 @@
 
 ### 따로 알아본 것
 
-참조형이란?  
+const참조  
+https://boycoding.tistory.com/208
+
+참조형이란?   
 https://boycoding.tistory.com/207
