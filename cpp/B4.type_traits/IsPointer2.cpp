@@ -10,41 +10,41 @@
 #include <iostream>
 using namespace std;
 
-// type traits : ÅÛÇÃ¸´ ÀÎÀÚ TÀÇ ´Ù¾çÇÑ Æ¯¼ºÀ» Á¶»ç/º¯È­ÇÏ´Â ´Ù¾çÇÑ ¸ŞÅ¸ ÇÔ¼ö
+// type traits : í…œí”Œë¦¿ ì¸ì Tì˜ ë‹¤ì–‘í•œ íŠ¹ì„±ì„ ì¡°ì‚¬/ë³€í™”í•˜ëŠ” ë‹¤ì–‘í•œ ë©”íƒ€ í•¨ìˆ˜
 
-// ¸¸µå´Â ¹æ¹ı
-// primary template : false ¸®ÅÏ( value = false )¶ó´Â ÀÇ¹Ì.
-// ºÎºĞ Àü¹®È­ ¹öÀü  : true ¸®ÅÏ(value = true)¶ó´Â ÀÇ¹Ì
+// ë§Œë“œëŠ” ë°©ë²•
+// primary template : false ë¦¬í„´( value = false )ë¼ëŠ” ì˜ë¯¸.
+// ë¶€ë¶„ ì „ë¬¸í™” ë²„ì „  : true ë¦¬í„´(value = true)ë¼ëŠ” ì˜ë¯¸
 
 
-// ±¸Á¶Ã¼(Å¬·¡½º)¾È¿¡¼­ =·Î ÃÊ±âÈ­ °¡´ÉÇÑ ¹æ¹ı
+// êµ¬ì¡°ì²´(í´ë˜ìŠ¤)ì•ˆì—ì„œ =ë¡œ ì´ˆê¸°í™” ê°€ëŠ¥í•œ ë°©ë²•
 
-// 1. enum { value = true } : ¿¹Àü ºÎÅÍ Áö¿ø
-// 2. static const bool value = true; 2000³â ÀÌÈÄ Áö¿ø
-// 3. bool value = true;     // C++11Àº ¸ğµç º¯¼ö¸¦ = ÃÊ±âÈ­ °¡´É.
+// 1. enum { value = true } : ì˜ˆì „ ë¶€í„° ì§€ì›
+// 2. static const bool value = true; 2000ë…„ ì´í›„ ì§€ì›
+// 3. bool value = true;     // C++11ì€ ëª¨ë“  ë³€ìˆ˜ë¥¼ = ì´ˆê¸°í™” ê°€ëŠ¥.
 
 template<typename T> struct IsPointer
 {
-	//enum { value = false }; // ¿¹Àü ½ºÅ¸ÀÏ
+	//enum { value = false }; // ì˜ˆì „ ìŠ¤íƒ€ì¼
 	//static const bool value = false;  // 
-	static constexpr bool value = false;  // C++11ÀÇ  constexpr »ç¿ë
+	static constexpr bool value = false;  // C++11ì˜  constexpr ì‚¬ìš©
 };
 
-// [*] ÇÙ½É : Æ÷ÀÎÅÍ Å¸ÀÔ¿¡ ´ëÇØ¼­ ºÎºĞ Æ¯¼öÈ­!!!
+// [*] í•µì‹¬ : í¬ì¸í„° íƒ€ì…ì— ëŒ€í•´ì„œ ë¶€ë¶„ íŠ¹ìˆ˜í™”!!!
 template<typename T> struct IsPointer<T*> 
 {
 	//enum { value = true };
 	//static const bool value = false;
-	static constexpr bool value = true;  // C++11ÀÇ  constexpr »ç¿ë
+	static constexpr bool value = true;  // C++11ì˜  constexpr ì‚¬ìš©
 };
 
 
 template<typename T> void foo(const T& a)
 {
-	if (IsPointer<T>::value) // enumÀÏ¶§µµ °¡´ÉÇÑ ±¸¹®, Áï enumÀº static value¶ó°í º¸¸é µÉµí
-		cout << "Æ÷ÀÎÅÍÀÔ´Ï´Ù." << endl;
+	if (IsPointer<T>::value) // enumì¼ë•Œë„ ê°€ëŠ¥í•œ êµ¬ë¬¸, ì¦‰ enumì€ static valueë¼ê³  ë³´ë©´ ë ë“¯
+		cout << "í¬ì¸í„°ì…ë‹ˆë‹¤." << endl;
 	else
-		cout << "Æ÷ÀÎÅÍ°¡ ¾Æ´Õ´Ï´Ù." << endl;
+		cout << "í¬ì¸í„°ê°€ ì•„ë‹™ë‹ˆë‹¤." << endl;
 }
 
 int main()
@@ -53,12 +53,12 @@ int main()
 	foo(n); // not pointer
 	foo(&n); // pointer
 
-	// [*] int& a = x ÀÌ°Ç ÂüÁ¶ÀÚÀÌ°í, int *c  = &b ¿¡¼­ &b´Â bÀÇ ÁÖ¼Ò Áï, Æ÷ÀÎÅÍ¸¦ ÃßÃâÇÏ´Â °Í.
-	// [*] Áß¿äÇÑ°Ç ÀÌ‹š a´Â xÀÇ º°ÄªÃ³·³ ¾²ÀÌÁö¸¸ typeÀº ÂüÁ¶Å¸ÀÔÀÌ´Ù. !!
+	// [*] int& a = x ì´ê±´ ì°¸ì¡°ìì´ê³ , int *c  = &b ì—ì„œ &bëŠ” bì˜ ì£¼ì†Œ ì¦‰, í¬ì¸í„°ë¥¼ ì¶”ì¶œí•˜ëŠ” ê²ƒ.
+	// [*] ì¤‘ìš”í•œê±´ ì´ë–„ aëŠ” xì˜ ë³„ì¹­ì²˜ëŸ¼ ì“°ì´ì§€ë§Œ typeì€ ì°¸ì¡°íƒ€ì…ì´ë‹¤. !!
 }
 
 
-// [*] Á¤¸®
-// type query¸¦ À§ÇÑ type traits ¸¸µå´Â ÀÏ¹İÀûÀÎ ¹æ¹ı
-// 1. primary template¿¡¼­ false¸¦ ¸®ÅÏ(value=false)
-// 2. partial specialization¿¡¼­ true¸¦ ¸®ÅÏ(value=true)
+// [*] ì •ë¦¬
+// type queryë¥¼ ìœ„í•œ type traits ë§Œë“œëŠ” ì¼ë°˜ì ì¸ ë°©ë²•
+// 1. primary templateì—ì„œ falseë¥¼ ë¦¬í„´(value=false)
+// 2. partial specializationì—ì„œ trueë¥¼ ë¦¬í„´(value=true)

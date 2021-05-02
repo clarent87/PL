@@ -17,14 +17,15 @@ template<typename ... Types> void foo()
 	pair<Types...>  p1; // pair<int, char>   ok
 	tuple<Types...> t1; // tuple<int, char>  ok
 
-	tuple<pair<Types...>> t2; // tuple<pair<int, char>>
-
-							  //pair<tuple<Types...>> p2; // pair< tuple<int, char> >  error
+	tuple<pair<Types...>> t2;  // tuple<pair<int, char>>
+	tuple<pair<Types>...> t2_1; // error, tuple<pair<int>,pair<double>> 이되는데 pair는 type이 두개가 필요해서 error
+	tuple<pair<int, Types>...> t4; // tuple< pair<int, int>, pair<int, char>> ok..
+    
+	pair<tuple<Types...>> p2; // pair< tuple<int, char> >  error , pair인자가 하나라서.. error
 	pair<tuple<Types>...> p3; // pair< tuple<int>, tuple<char>> ok
 
-							  //tuple<pair<Types>...> t3; // tuple< pair<int>, pair<char>> error
-
-	tuple<pair<int, Types>...> t4; // tuple< pair<int, int>, pair<int, char>> ok..
+	
+	
 }
 
 int main()

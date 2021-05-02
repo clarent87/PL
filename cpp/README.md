@@ -28,3 +28,9 @@ https://boycoding.tistory.com/208
 
 참조형이란?   
 https://boycoding.tistory.com/207
+
+new Cache?
+: new 에서 ()안쓴 형태.. 
+: new는 동적할당의미하고 ()나 {}를 안쓴건 초기화를 안한다는거 같음. 즉 new cache는 cache 구조체를 그냥 heap에 생성하고 끝?
+: mutable없이 위문제 해결하는 법의 예제..
+https://boycoding.tistory.com/204

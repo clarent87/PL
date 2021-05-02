@@ -7,7 +7,6 @@
 */
 
 
-// template alias
 template<typename T> class List {};
 
 // typedef : type 별칭을 만들지만... template 의 별칭을 만들수 없다.
