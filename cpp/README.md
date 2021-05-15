@@ -34,3 +34,11 @@ new Cache?
 : new는 동적할당의미하고 ()나 {}를 안쓴건 초기화를 안한다는거 같음. 즉 new cache는 cache 구조체를 그냥 heap에 생성하고 끝?
 : mutable없이 위문제 해결하는 법의 예제..
 https://boycoding.tistory.com/204
+
+### 궁금증.. 
+
+java에서 제네릭으로 특정 base class의 하위 class만 사용가능한 class, method 만드는게 가능한데..
+c++ 템플릿도 특정 class만 사용가능한 class, method 만들수 있나? ( type_traits 사용해야하나? )
+> 정답 : enable_if이용한다. [link][1]
+
+[1]:https://stackoverflow.com/questions/30687305/c-equivalent-of-using-t-extends-class-for-a-java-parameter-return-type
