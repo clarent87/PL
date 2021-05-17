@@ -1,4 +1,4 @@
-# MOOC 정리 
+# MOOC 정리
 
 - [www.isocpp.org](https://isocpp.org/)
   - cpp표준위원회가 공식적으로 운영하는 사이트
@@ -24,18 +24,18 @@
 ## 따로 알아본 것
 
 const참조  
-https://boycoding.tistory.com/208
+<https://boycoding.tistory.com/208>
 
-참조형이란?   
-https://boycoding.tistory.com/207
+참조형이란?
+<https://boycoding.tistory.com/207>
 
 new Cache?
-: new 에서 ()안쓴 형태.. 
+: new 에서 ()안쓴 형태..
 : new는 동적할당의미하고 ()나 {}를 안쓴건 초기화를 안한다는거 같음. 즉 new cache는 cache 구조체를 그냥 heap에 생성하고 끝?
 : mutable없이 위문제 해결하는 법의 예제..
-https://boycoding.tistory.com/204
+<https://boycoding.tistory.com/204>
 
-## 궁금증.. 
+## 궁금증
 
 java에서 제네릭으로 특정 base class의 하위 class만 사용가능한 class, method 만드는게 가능한데..
 c++ 템플릿도 특정 class만 사용가능한 class, method 만들수 있나? ( type_traits 사용해야하나? )
@@ -45,6 +45,9 @@ c++ 템플릿도 특정 class만 사용가능한 class, method 만들수 있나?
 
 auto_ptr
 :여기 링크 내용 좋은듯
-https://psychoria.tistory.com/42
+<https://psychoria.tistory.com/42>
+
+RAII개념
+<https://modoocode.com/229>
 
 [1]:https://stackoverflow.com/questions/30687305/c-equivalent-of-using-t-extends-class-for-a-java-parameter-return-type
