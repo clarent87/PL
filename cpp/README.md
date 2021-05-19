@@ -66,8 +66,6 @@ int main(){
 
 ```
 
-
-
 ## link
 
 auto_ptr
@@ -79,21 +77,19 @@ RAII개념
 <https://modoocode.com/229>
 
 자동으로 추가되는 함수 규칙
-http://egloos.zum.com/sweeper/v/2995404
+<http://egloos.zum.com/sweeper/v/2995404>
 
 cpp 인터페이스
-https://igotit.tistory.com/entry/C%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8A%A4-interface
+<https://igotit.tistory.com/entry/C%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%ED%81%B4%EB%9E%98%EC%8A%A4-interface>
 
 참조자 vs pointer
-https://gracefulprograming.tistory.com/11
+<https://gracefulprograming.tistory.com/11>
 
 복사,대입연산자
 : 포인터를 가지는 경우는 반드시 두개가 필요하다고 하네.
-https://link2me.tistory.com/1755
+<https://link2me.tistory.com/1755>
 
 const&
-https://rieulpost.tistory.com/54
+<https://rieulpost.tistory.com/54>
 
 [1]:https://stackoverflow.com/questions/30687305/c-equivalent-of-using-t-extends-class-for-a-java-parameter-return-type
-
-
