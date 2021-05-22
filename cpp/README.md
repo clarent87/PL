@@ -66,6 +66,8 @@ int main(){
 
 ```
 
+- friend 함수는 상속되지 않는다. 
+
 ## link
 
 auto_ptr
