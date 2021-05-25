@@ -27,6 +27,16 @@
 
 ### Classes
 
+- Declaration Order
+  - public:  protected:  private: 순서로 작성
+  - 각 섹션안에서의 순서
+    - types (including typedef, using, enum, and nested structs and classes),
+    - constants, 
+    - factory functions, 
+    - constructors and assignment operators, destructor, 
+    - all other methods, 
+    - data members.
+
 ### Functions
 
 ### Google-Specific Magic
