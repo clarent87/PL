@@ -19,7 +19,7 @@ int main()
     std::thread t(foo, std::move(p));
     t.detach();
 //    ft.get();
-}
+} // [*] ft의 소멸자 get 기능은, async에서 반환되었을때만 존재, 즉 이 예제는 foo가 종료되기 전에 프로그램이 끝남
 
  
 
