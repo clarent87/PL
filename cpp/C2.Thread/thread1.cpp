@@ -10,7 +10,8 @@ void foo()
         std::cout << "foo : " << i << std::endl;
         std::this_thread::sleep_for(100ms);
     }
-    // [*] 근데 return이 없네.. void 일때도 return은 해야 문제가 없던거 같았는데..
+    // [*] 근데 return이 없네.. void 일때도 return은 해야 문제가 없던거 같았는데..(안드로이드는..) => 프로세스 fork일때도먼가있엇음
+    // [*] pthread일때는 return이 있었고, pthread_join을 통해 return을 얻을수 있음
 }
 int main()
 {
