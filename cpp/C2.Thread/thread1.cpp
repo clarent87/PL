@@ -10,6 +10,7 @@ void foo()
         std::cout << "foo : " << i << std::endl;
         std::this_thread::sleep_for(100ms);
     }
+    // [*] 근데 return이 없네.. void 일때도 return은 해야 문제가 없던거 같았는데..
 }
 int main()
 {

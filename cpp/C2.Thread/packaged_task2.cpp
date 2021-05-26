@@ -2,6 +2,7 @@
 #include <thread>
 #include <future>
 
+// [*] 멀티 스레드를 고려하지 않고 작성된 함수
 int add(int a, int b)
 {
     std::cout << "add" << std::endl;
