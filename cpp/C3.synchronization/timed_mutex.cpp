@@ -11,7 +11,7 @@ void foo()
 {
     //m.lock();
     //if ( m.try_lock() )
-    if ( m.try_lock_for(2s) )
+    if ( m.try_lock_for(2s) ) //[*] 2초까지 대기 해주고, 그 안에 mutex획득 못하면 false 리턴
     {
         share_data = 100;
         std::cout << "using share_data" << std::endl;
