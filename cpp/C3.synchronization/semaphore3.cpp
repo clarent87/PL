@@ -5,9 +5,11 @@
 #include <semaphore>
 using namespace std::literals;
 
-
+//std::counting_semaphore<3> sem(0); // [*]이경우 counter는 0 즉 다른곳에서 release를 먼저 수행해 줘야함
+                                    //  [*]이렇게 쓰는경우도 많다함
 //std::counting_semaphore<1> sem(1); 
-std::binary_semaphore sem(1);
+std::binary_semaphore sem(1); // [*] 이거 위와 같다. 
+                            //   [*] using binary_semaphore = std::binary_semaphore<1>;
 
 
 void Download(std::string name)

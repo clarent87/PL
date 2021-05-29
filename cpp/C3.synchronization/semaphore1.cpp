@@ -6,12 +6,12 @@
 #include <semaphore>
 using namespace std::literals;
 
-std::counting_semaphore<3> sem(3); 
+std::counting_semaphore<3> sem(3); // [*] 세마포어 만드는 법
 std::mutex m;
 
 void Download(std::string name)
 { 
-    sem.acquire();
+    sem.acquire(); // [*] 스레드 3개 까지 진입가능
     //m.lock();
     for (int i = 0; i < 100; i++)
     {
@@ -21,6 +21,7 @@ void Download(std::string name)
     //m.unlock();
     sem.release();
 }
+
 int main() 
 {
     std::thread t1(Download, "1");
