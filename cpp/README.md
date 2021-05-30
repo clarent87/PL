@@ -29,10 +29,10 @@ const참조
 참조형이란?
 <https://boycoding.tistory.com/207>
 
-new Cache?
+new user_structure
 : new 에서 ()안쓴 형태..
-: new는 동적할당의미하고 ()나 {}를 안쓴건 초기화를 안한다는거 같음. 즉 new cache는 cache 구조체를 그냥 heap에 생성하고 끝?
-: mutable없이 위문제 해결하는 법의 예제..
+: new는 동적할당의미하고 ()나 {}를 안쓴건 초기화를 안한다는거 같음. 즉 new user_structure는 user_structure 구조체를 그냥 heap에 생성하고 끝?
+: mutable없이 위문제 해결하는 법의 예제..==> 잘못쓴듯
 <https://boycoding.tistory.com/204>
 
 ## 궁금증
@@ -97,12 +97,34 @@ int x = t; // 만약 변환연산자가 t에 있었다면, 여기서는 t의 변
 
 - `Singleton& s = Singleton::getInstance();`
   - 이때 getInstance의 return type이 Singleton&
-  - 이경우 s는 그냥 이름만 붙이는 동작으로 보임 
+  - 이경우 s는 그냥 이름만 붙이는 동작으로 보임
     - 변수 선언의 참조type은 이름붙이는 작업으로 보임..
     - return type의 참조는 주소? return으로 봐야하나? -> 아닌듯, 그냥 임시객체 반환으로 보면될거 같음
   - **참조타입은 무조건 선언시 초기화가 되야함**
-- `Singleton s = Singleton::getInstance();` 
+- `Singleton s = Singleton::getInstance();`
   - 이건 Singleton 초기화니까, 복사생성자가 호출된다고 봐야할듯( 복사생성자의 param이 const Singleton& 니까)
+
+- 초기화
+  - `{}`초기화랑 `()` 초기화 때랑 차이가 나는 case가 있었음 => vector에서..
+  - 이거 중요하다. 아마 google style guide에서 본거 같기도 하고..
+
+- default 복사 생성자
+  - default 복사 생성자는 기본적으로 메모리의 값을 복사 하는 형태로 제공 ( 즉, 변수들 값이 복사 되는것)
+    - 즉, **복사 생성자 호출없이**그냥 메모리의 값을 복사하나봄(최적화인가?)
+  - 복사 생성자를 재정의 한다는 것은 값 복사를 하지 않겠다는 의미 이다. 보통..
+
+- static_assert : [link][2]
+
+  ```cpp
+  template <class T>
+  struct data_structure
+  {
+      static_assert(std::is_default_constructible<T>::value,
+                    "Data structure requires default-constructible elements");
+  }; // 이렇게 구조체 안에 넣어도 compile시에 호출되나봄
+  ```
+
+
 
 ## link
 
@@ -136,6 +158,10 @@ static 멤버 변수 정의
 
 복사생성자
 : 설명은 아는내용이고, 여기서 볼껀 책 사진찍은거.. 이런 내용이 나온 cpp책도 있네..
-https://huiyu.tistory.com/entry/C-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EC%9D%98-%ED%98%B8%EC%B6%9C%EC%8B%9C%EC%A0%90
+<https://huiyu.tistory.com/entry/C-%EB%B3%B5%EC%82%AC-%EC%83%9D%EC%84%B1%EC%9E%90%EC%9D%98-%ED%98%B8%EC%B6%9C%EC%8B%9C%EC%A0%90>
+
+람다 값 캡쳐, mutable
+<https://modoocode.com/196>
 
 [1]:https://stackoverflow.com/questions/30687305/c-equivalent-of-using-t-extends-class-for-a-java-parameter-return-type
+[2]:https://dydtjr1128.github.io/cpp/2019/06/03/Cpp-static_assert.html

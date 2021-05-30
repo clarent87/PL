@@ -11,6 +11,7 @@ struct  Account // 계좌
 };
 
 /*
+// std:lock으로 deadlock회피하는 코드
 void transfer(Account& acc1, Account& acc2, int cnt)
 {
 //    acc1.m.lock();
