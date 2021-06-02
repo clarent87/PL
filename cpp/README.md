@@ -48,6 +48,9 @@ class에서 멤버로 포인터가 좋은가 참조가 좋은가?  기본적으�
 
 그 structure만 선언에서 변수 초기화가 됬다고 한거 같은데,, class는 원래 안되다가 되게 되었고,, 이거 무슨 챕터 내용이지? -> factorial.cpp
 
+함수포인터?에 & 붙이면 void? 된다는 내용도 있었는데.. : 이건 인터넷에서 찾았을듯
+`->*` : cpp 기초. 함수포인터 섹션에 있음
+
 ## 헷갈렸던것
 
 ```c++
@@ -162,6 +165,11 @@ static 멤버 변수 정의
 
 람다 값 캡쳐, mutable
 <https://modoocode.com/196>
+
+method의 pointer로 함수 호출
+: `->*`나옴
+<https://stackoverflow.com/questions/1485983/calling-c-class-methods-via-a-function-pointer>
+
 
 [1]:https://stackoverflow.com/questions/30687305/c-equivalent-of-using-t-extends-class-for-a-java-parameter-return-type
 [2]:https://dydtjr1128.github.io/cpp/2019/06/03/Cpp-static_assert.html
