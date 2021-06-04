@@ -172,6 +172,10 @@ method의 pointer로 함수 호출
 : `->*`나옴
 <https://stackoverflow.com/questions/1485983/calling-c-class-methods-via-a-function-pointer>
 
+후위형 반환 타입
+: 이거 설명 좋다.. 잘 되어 있음. 
+: `auto func() -> type` 에 대한 설명임
+https://sillim83.tistory.com/142
 
 [1]:https://stackoverflow.com/questions/30687305/c-equivalent-of-using-t-extends-class-for-a-java-parameter-return-type
 [2]:https://dydtjr1128.github.io/cpp/2019/06/03/Cpp-static_assert.html
