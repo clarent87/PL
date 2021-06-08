@@ -129,8 +129,6 @@ int x = t; // 만약 변환연산자가 t에 있었다면, 여기서는 t의 변
   }; // 이렇게 구조체 안에 넣어도 compile시에 호출되나봄
   ```
 
-
-
 ## link
 
 auto_ptr
@@ -173,9 +171,13 @@ method의 pointer로 함수 호출
 <https://stackoverflow.com/questions/1485983/calling-c-class-methods-via-a-function-pointer>
 
 후위형 반환 타입
-: 이거 설명 좋다.. 잘 되어 있음. 
+: 이거 설명 좋다.. 잘 되어 있음.
 : `auto func() -> type` 에 대한 설명임
-https://sillim83.tistory.com/142
+<https://sillim83.tistory.com/142>
+
+vector에서 add했을때 복사/무브 생성자 호출에 관해
+<https://blog.naver.com/enter_maintanance/221829474489>
+<https://stackoverflow.com/questions/19826376/insert-into-vector-having-objects-without-copy-constructor>
 
 [1]:https://stackoverflow.com/questions/30687305/c-equivalent-of-using-t-extends-class-for-a-java-parameter-return-type
 [2]:https://dydtjr1128.github.io/cpp/2019/06/03/Cpp-static_assert.html
