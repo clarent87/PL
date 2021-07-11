@@ -15,3 +15,7 @@ enum
 변수 초기화
 <https://whatisthenext.tistory.com/30>
 
+java hashmap
+http://tech.javacafe.io/2018/12/03/HashMap/
+java 10 var
+https://dev.to/composite/java-10-var-3o67
