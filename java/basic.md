@@ -130,3 +130,22 @@ Object[] ar = new Object[] {"abc"};
 // ar[0] = "abc"; // String도 Object의 sub class 이므로.. 
 
 ```
+
+## 익명 클래스의 constructor
+
+ref. <https://www.dummies.com/programming/java/how-to-use-an-anonymous-class-in-java/>
+ref. <https://www.baeldung.com/java-anonymous-classes>
+
+- TDD 책에서 아래와 같은 코드가 나옴
+- 위 ref에서 익명 class는 constructor가 없기 때문에 param을 넘길수 없다고 하는데.. 아마이는 interface를 impl했을때 얘기인거 같음
+- java File은 class이고 constructor중에 param받는게 있어서 아래처럼 가능한거 같음.. (ref두번째에서 그런 설명이 있음)
+
+```java
+
+File f = new File("foo"){
+  public boolean createNewFile(){
+    ...
+  }
+}
+
+```
