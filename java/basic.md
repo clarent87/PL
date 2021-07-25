@@ -149,3 +149,22 @@ File f = new File("foo"){
 }
 
 ```
+
+## syncronized
+
+<https://parkcheolu.tistory.com/15>  
+  
+java에서 동기화는 객체, 혹은 클래스 객체에 걸수 있다.
+일반적으로는 객체(변수)에 거는데, static method의 경우는 객체가 없으므로 class에 거는것( 업밀히 말하면 class객체지.. jvm에 class가 올라오면 객체고 하나이니까)
+
+## java object의 wait, notifyall 함수에 관해
+
+<http://happinessoncode.com/2017/10/05/java-object-wait-and-notify/>
+<https://cornswrold.tistory.com/189>
+
+이거 굉장히 특이하다.. cpp에서도 wait및 notify 잇음  
+  
+헷갈렸던 부분이 cpp의 경우 future객체를 사용하는 thread에서 futere객체의 wait를 호출 (즉, 객체 함수 호출 )  
+마찬가지로 java에서도 lock 걸린 객체의 wait,나 notify함수를 호출하는것!! ( lock 걸린 객체란 것은 `syncronized(객체)` 의 객체를 의미)
+  
+> 난 그냥 thread 안에서 wait 함수를 호출하는줄 알았음.. 무슨 system 함수 호출하듯.. 그게 아님.. (이건 절차지향이겠지..)

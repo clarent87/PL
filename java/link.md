@@ -16,6 +16,10 @@ enum
 <https://whatisthenext.tistory.com/30>
 
 java hashmap
-http://tech.javacafe.io/2018/12/03/HashMap/
+<http://tech.javacafe.io/2018/12/03/HashMap/>
 java 10 var
-https://dev.to/composite/java-10-var-3o67
+<https://dev.to/composite/java-10-var-3o67>
+
+🌟여기 상당히 갠춘한듯
+> java문법이 아닌 라이브러리? 개념들이 있음
+<https://madplay.github.io/post/java-collection-synchronize>
