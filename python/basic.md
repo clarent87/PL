@@ -14,3 +14,7 @@ python은 block scope는 없음.
     return answer # 어사인 되기전 사용하였다는 에러 발생.. 아.. else안타면.. 그럴수도..
 
 ```
+
+## packed unpacked
+
+https://wikidocs.net/22801

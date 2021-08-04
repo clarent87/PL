@@ -23,3 +23,28 @@ java 10 var
 🌟여기 상당히 갠춘한듯
 > java문법이 아닌 라이브러리? 개념들이 있음
 <https://madplay.github.io/post/java-collection-synchronize>
+
+🌟오오.. 여기 좋네. java 문법 잘나온듯
+> 진짜 갠찮은듯.. 나중에 꼭 정독 필요
+http://tcpschool.com/java/java_lambda_reference
+
+
+동시성 문제 
+> 아래 내용들 모두 좋다.
+https://codechacha.com/ko/java-atomic-integer/
+https://cyberx.tistory.com/34
+https://www.slideshare.net/zzapuno/kgc2013-3
+
+lock-free
+> 여기 책 나중에 봐야 할듯
+https://effectivesquid.tistory.com/entry/Lock-Free-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98Non-Blocking-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98
+
+jvm
+https://applefarm.tistory.com/155
+https://velog.io/@dev_isaac/JVM
+http://blog.breakingthat.com/2018/12/21/java-constant-pool%EA%B3%BC-string-pool/
+https://iamsang.com/blog/2012/08/19/introduction-to-java-bytecode/
+
+localdate
+> java 8부터는 date 를 개발자들이 안쓴다함. 우형 세미나 spring batch에서 언급됨
+https://java119.tistory.com/52
