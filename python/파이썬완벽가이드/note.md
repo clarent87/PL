@@ -2,6 +2,15 @@
 
 읽으면서 기억나는 것들 적거나, 키워드만 작성해둔다.
 
+- [note](#note)
+  - [1장](#1장)
+  - [2장](#2장)
+  - [3장 타입과 객체](#3장-타입과-객체)
+  - [4장 연산자와 표현식](#4장-연산자와-표현식)
+  - [5장 프로그램 구조와 제어 흐름](#5장-프로그램-구조와-제어-흐름)
+  - [6장 함수와 함수형 프로그래밍](#6장-함수와-함수형-프로그래밍)
+  - [7장 클래스와 객체 지향 프로그래밍](#7장-클래스와-객체-지향-프로그래밍)
+
 ## 1장
 
 - 코루틴, 제너레이터는 호출시 객체 반환.
@@ -44,6 +53,7 @@
 - callable type p57
   - 사용자 정의 함수
     - 여러 attribute 존재. `__dic__, __code__` 등
+    - > 여기서 global, clouser attribute 중요! p120 참조
   - 매서드 p59
     - class method, instance method, static method 존재
       - > 근데 class method, static method개념이 cpp,java에도 있었나?
@@ -278,6 +288,7 @@
       - py3는 nonlocal keyword를 이용하면 바깥쪽 함수의 변수 재할당도 가능
     - 지역변수에 값 할당전 사용하면 UnboundError발생 , 117p
       - > 이거 나도 몇번 실수 했다.
+    - > javascript에서는 중첩함수 안에서 바깥 함수 변수 접근이 되긴했는데, 만약 바깥 함수에 `{}`을 사용한 부분이 있다면 해당 부분에서 정의된 변수는 접근 불가
 
 - 🌟객체와 클로저로서 함수 , 118p
   - 클로저 : 함수를 구성하는 문장과 실행 환경을 함께 묶은것
@@ -293,4 +304,268 @@
     - 실제 클로저가 성능히 50%더 좋음. 
   - 클로저는 언제 사용?
     - 기존 함수에 추가 기능을 넣을때 씀 -> 데코레이터
-      - > 클로저의 내부 환경 기록 특징 때문에 가능하나봄
+      - > 클로저의 내부 환경 기록 특징 때문에 가능하나봄  
+      - > 약간 람다의 캡처 개념이라고  봐야 하나..
+
+- 데코레이터 , 121p
+  - 데코레이터는 기본적으로 중첩함수를 반환하는 형태로 구현 
+    - 🌟 물론 class에 대핸 데코레이터 일때는 class 객체를 반환하게 해야함
+  - 데코레이터는 여러개 사용가능, 각각 한줄씩 써야함
+    - 이경우 적용 순서는 맨처음 줄의 데코레이터 부터 순차적으로 적용
+    ```python
+    @foo
+    @bar
+    @spam
+    def grok(x):
+      pass
+    #는 다음과 같다. 
+    grok = foo(bar(spam(grok)))
+    ```
+  - 데코레이터는 인수 받는거 가능 -> 이부분 중요 
+    - 🌟구현상 데코레이터 함수의 인수 받는 부분이 기본 데코레이터랑은 차이가 있다 ( func를 받느냐, param을 받느냐 )
+    ```python
+    @eventhandler('Button')
+    def handle_button(msg):
+      pass
+    # 위는 아래와 같다. 
+    temp = eventhandler('Button')
+    handle_button = temp(handle_button) # 인수 없는 버전은  handle_button = eventhandler(handle_button) 만 존재. 
+                                        # (즉 인수 버전은 데코레이터 만들시중첩함수가 한단계 더 필요)
+    ```
+  - > 데코레이터 관련 해서는 옛날에 정리 했던거 있었는데,, 나중에 가져올 필요 있음  
+  - > 그리고 데코레이터를 왜 사용해야하는지는 따로 다시 확인 필요 
+  - > 원래 데코레이터가 원본 함수에 뭔가 기능을 추가하려는 건데, 이 개념으로 보면 인수가 있는 데코레이터는 중첩이 한단계 더 필요함.
+  - 데코레이터는 재귀, 문서화 문자열, 함수 속성 등 함수와 관련된 다른 부분과 서로 기묘하게 작용 ( 이 장의 나중에 설명)
+
+- generator and yield
+  -  yield 키워드를 함수에서 사용하면 그게 generator
+  -  🌟 generator는 반복에서 사용할 값들을 생성하는 함수
+  -  py3에서는 `next()` 대신 `__next()__` 사용
+  -  보통 generator 의 next를 직접 쓰는 일은 없다. 
+     -  for, `sum()` 등 기타 연산에서 씀
+  -  generator는 종료시 None을 반환하거나 StopIneration 예외를 발생시켜야 한다. 
+     -  이렇게 되면 반복은 멈춤. 종료 순간에 None 말고 다른 값 반환하면 안됨
+  - 만약 generator 객체를 쓰다가 (next 호출) 더 이상 generator 객체를 쓰지 않는 경우
+    - 이떄는 close 함수를 호출해 주면 된다. 
+      - close 이후 next 호출시 StopIneration 예외 발생
+      - close 함수 호출 시점에 generator 객체에서는 GeneratorExit 예외가 나오므로 이것을 잡아서 추가적인 정리 작업 가능
+        - 단, 이떄 예외처리에서 다시 yield를 잡아서는 안됨
+  - 현재 genreator에서 반복을 수행하고 있는데,, 다른 스레드나 signal handler에서 해당 generator 객체에 close를 날리면 안됨.
+    - > 즉 동시성에서 generator관리는 주의해야 한다는 거
+
+- 코루틴과 yield 표현식
+  - generator 와 코루틴은 yield 표현식 사용방법이 좀 다름
+    ```python
+    # generator
+    def countdown(n):
+      while n > 0:
+        yield n # next 로 호출되면 n값이 반환됨. 그리고 여기까지만 실행됨
+        n -=1
+      return
+    # 코루틴
+    def receiver():
+      while True:
+        n = (yield)
+        print("Got %s" % n)
+    ```
+  - 코루틴에서는 첫번째로 next를 호출해줘야 yield문 까지 감(여기까지 실행됨), 이후 send를 통해 값을 yield로 전달하면 된다. 
+  - send를 받으면 코루틴은 다음 yield문까지 진행.
+  - 여기서 next를 사용하는 것을 있어먹을수 있으므로, `@coroutine` 데코레이터랑 같이 쓰는게 일반적
+    - 이거 쓰면 next 안써도 됨
+  - close 나 exception은 generator와 동일
+  - 단, throw를 전달할수 있는 부분은 차이가 있다. 
+    - ex: 코루틴 r이 있는경우 `r.throw(RuntimeError,"test")` 로 코루틴 r에 예외 전달 가능. 
+    - 이 예외는 코루틴 안에서 `except`문으로 잡아서 처리 가능
+    - 그리고 이건 비동기적으로 다른 쓰레드에서 호출하거나 그러면 문제 생길수 있으니 주의
+  - 🌟yield 표현식에 값을 줄수도 있다. ,127p
+    - 동작을 잘이해해야한다. 
+    ```python
+    def line_splitter(delimiter=None):
+      result = None
+      while True:
+        line = (yield result)
+        result = line.split(delimiter)
+    ```
+    - 1. 일단 next 호출하면, yield문까지 실행하는데 이때 result값인 None을 출력
+    - 2. send로 "A,B,C"를 전달하면 yield에서 받아서 line에 저장, 그 후line split 실행되고 다시 yield문에서 result 반환
+    - 즉, `line = (yield result)`에서 result 반환 후 `line = (yield)`가 수행되는것
+    - 코루틴이 이처럼 값을 반환하는 경우에는 throw 동작도 조금 다름.. 이부분은 127p 참조
+  - > 활용처에 대해서는 129,130p에 나오는데 일단 생략  
+  - > 병행 프로그램 작성에 사용가능하다는데.. 20장에 나온다함
+
+- 리스트 comprehension , 130p
+  - 리스트의 각아이템에 어떤 함수를 적용해서, 새로운 list를 만들때 씀.
+    - > 🌟 map 함수도 비슷한 개념이었던거 같은데..  
+    - > 이부분 이슈인거 같다. 
+  - 리스트 comprehension에 for in if 를 반복해서 적을수 있음. 이부분의 해석은 아래와 같음
+  ```python
+  for x in a:
+    if c:
+      for y in b
+        if d:
+          s.append(표현식)
+  ```
+  - 🌟주의
+    - py2에서는 `[x for x in a]`란 구문이 있을때, 만약 x가 밖에 있는 변수 였다면 그 x를 덮어 씀.
+    - 이부분은 py3에서는 해당하지 않음 ,py3는 리스트 내포안의 변수는 내부(private)변수로만 씀
+
+- 🌟 generator expression, 132p
+  - 리스트 comprehension이랑 사용법은 똑같음. 단 `[]` 대신 `()`를 씀
+  - 차이는 리스트 내포는 한번에 값을 생성해서 리스트로 들고 있다는것이고, 생성기 표현식은 next 호출시마다 값을 그때그떄 만들어 준다는것!!
+  - 따라서 메모리 사용률에 이점이 있음
+  - > 튜플을 만드는 comprehension은 없다!
+  - generator expression은 `반복`을 통해 필요할 때 값을 생성하는 생성기 객체를 반환한다. 
+    - `next()`를 호출해서 값을 하나씩 받을수도 있고 for문에 사용도 가능
+    - > generator도 next를 직접쓰는 일은 없고 for문이나, sum 같은 함수에서 쓴다고 했는데, 이것도 마찬가지 인듯
+  - 🌟 주의
+    - 생성기 표현식은 순서열 처럼 작동하는 객체를 생성하는 것이 아님
+      - 순서열 객체는 list, 문자열 이런거.. 
+      - 따라서 append나 index같은거 안먹힘.. 
+      - 필요하면 `list()`를 이용해서 list를 만들어서 써야 한다. 
+
+- 🌟 선언형 프로그래밍, 133p
+  - 리스트 내포와 생성기 표현식은 선언형 프로그래밍에서 볼 수 있는 연산과 깊은 관련이 있음
+  - > https://boxfoxs.tistory.com/430
+  - > 이거 엄청 중요하네!! 쥬식 만들때 매우 중요 할듯 ( 생성기 표현식!)
+  - DB 접근에 관련된 모듈을 사용할때, DB 질의와 리스트 내포를 같이 쓰는 경우가 종종 있다. (17장 참조)
+
+- lambda 연산자, 135p
+  - 보통 간단한 콜백 함수 작성에 씀
+  - 함수와 동일한 유효범위 규칙을 가짐
+  - lambda의 body는 반드시 유효한 표현식 이어야 함
+    - 즉, 여러 문장 안됨
+    - for문 while문 같은 표현식이 아닌 문장은 쓸수 없음 
+
+- 재귀
+  - python 재귀에는 함수 호출 깊이 제한이 있다. 
+    - `sys.getrecursionlimit()` 으로 깊이 확인 가능. 
+    - `sys.setrecursionlimit()` 으로 값 변경 가능 (기본 값은 1000)
+      - 이 값은 운영체제에서 설정된 스택 크기 제한을 넘을수는 없다. 
+  - python 재귀는 꼬리 재귀 최적화 해주지 않는다. 
+  - 재귀는 생성기 함수나 코루틴에서 제대로 동작하지 않는다. ,135p
+    - > 당연한건데.. 왜냐면 생성기/코루틴은 yield 만나면 객체를 반환. 즉 그 뒤로 control flow 진행이 안됨
+    - > 따라서 책 예제에서는 for 문을 이용해서 generator 함수 재귀의 정상 동작을 만들어냄 136p
+  - 데코레이터랑 같이 쓰면 재귀 함수 호출시 모든 재귀에서 데코레이팅 된 함수가 호출됨
+    - 따라서 lock 이나 동기화를 위해 데코레이터를 썻다면 재귀는 가급적 쓰지 않는것이 좋음
+
+- 문서화 문자열
+  - 함수의 첫번째 문장은 주로 함수의 사용법을 설명하는 문서화 문자열인 경우가 많다. 
+  ```python
+  def factorial(n):
+    """Computes n factorial ~~ 이게 문서화 문자열.
+    """
+    if~~
+  ```
+  - 문서화 문자열은 함수의 `__doc__` 속성에 저장됨
+  - 🌟 데코레이터를 사용한 경우 데코레이터 때문에 해당 함수의 `__doc__`가 제대로 동작 안함, 137p
+    - `help(func)`를 하면 `__doc__`의 내용이 출력되는데 데코레이터로 func를 감쌋다면 정상적으로 나오지 않음
+    - 이경우 데코레이터에서 반환하는 중첩함수의 `__doc__` 및 `__name__`을 원본함수의 값으로 할당해줘야 한다. 
+    - 이게 빈번하게 필요해서 functools에 wraps 데코레이터로 제공됨
+
+- 함수 속성
+  ```python
+  def foo():
+    pass
+  foo.secure = 1 # 함수 객체에 임의의 속성 secure를 만들어서 값을 할당
+  foo.private = 1
+  ```
+  - 위와 같은 함수 속성은 `__dict__` 사전에 담긴다.
+  - 함수 속성은 함수 객체에 추가 정보를 붙이려는 응용 프로임 워크 같은 특수한 곳에 사용됨
+  - 앞선 문서화 문자열 처럼 데코레이터랑 사용하면 문제가 있으므로.. functools의 wraps 데코레이터랑 같이 쓰던지 (데코레이터 만들때 써야함)
+    - 아니면 `call.__dict__update(func.__dict__)` 를 쓴다. 자세한건 138p 참조
+
+- eval, exec, compile
+  - eval 함수는 표현식을 담은 문자열을 실행하고 그 결과를 반환
+  - exec 함수는 임의의 파이썬 코드를 담은 문자열을 실행
+    - py2에서는 exec 함수 사용시 괄호가 없어도 됨. py3는 괄호 필요
+  - 네임스페이스는 caller의 네임스페이스 사용. but 함수에 네임스페이스 넘겨 줄수 있음 p139
+    - > 모듈이 네임스페이스 랬지.. 이게 global, 그리고 함수안에 정의 되는게 local 근데 `__local__` 같은 속성은 함수에 없음. 아마 local은 인터프리터에서 관리?
+  - 중첩함수 안에서 위함수 쓸땐 suyntaxerror 날수도 있음
+  - compile은 생략.. 그냥 책봐라
+
+## 7장 클래스와 객체 지향 프로그래밍
+
+- 클래스 변수 p142
+  - > cpp의 class static 변수라고 보면 될듯
+- 클래스 객체가 네임스페이스 역할을 함.
+  - 따라서 클래스 변수, 클래스의 메소드는 클래스 객체에 `.`연산으로 접근가능 p142
+  ```python
+  a = Account("Guido.",1000) # Account.__init__("Guido.",1000)
+  a.deposit(100.0) # Account.deposit(a,100.0)
+                    # . 연산에 의해 참조한 deposit method는 Account class의 namespace를 참조해서 얻음 (왜냐면 객체 a의 namespace엔 없어서)
+
+  ```
+- 객체에 `.` 연산을 쓰면 객체의 namespace를 뒤지고 그다음 자동으로 class의 namespace를 참조함. 143p 145p
+  - 그래도 없으면 base class에서 찾음
+  - > 이런 유효범위 규칙은 위에서도 나왓었음.
+
+- 유효범위 규칙 p143
+  ```python
+  class Foo(object):
+    def bar(self):
+      pass
+    def spam(self):
+      bar(self) # 틀림
+      self.bar() # 맞음
+      Foo.bar(self) # 맞음
+
+  #내가 추가함
+  class test(object):
+    fee = 100
+    def test_method(self):
+        print(self.fee) # 여기서 class namespae의 fee가 참조됨. 왜냐면 객체 namespae에 fee 속성이 없어서..
+
+  a = test()
+  a.test_method()
+  ```
+  
+- 상속
+  - base class가 없으면 object를 상속하면됨. `__str__()` 같은 몇몇 공통 메서드의 기본 구현제공
+  - 🌟 아래 내용 중요
+  - subclass에서 `__init__`을 재정의 해서 인스턴스에 새로운 속성 추가가능
+    - > 여기 예에서는 속성 추가는 변수 추가를 진행하였다. ( 아마 다른것들도 가능은 할듯.. 예를 들면 method?)
+  ```python
+  class EvilAccount(Account):
+    def __init__(self,name,balance, evilfactor):
+      Account.__init__(self, name, balance) # base class의 init이 자동 호출되지 않기때문에, 명시적 호출 필요
+      self.evilfactor = evilfactor
+  ```
+  - base class에 init을 정의 하지 않았다면, 위 예시의  `Account.__init__`는 없어도 됨
+  - base class에 `__init__`이 정의 되었는지 모르겠다면 그냥 인수 없는 `__init__()`을 호출해도 된다. 
+    - 항상 아무 일도 하지 않는 기본 구현이 제공되기 때문
+  - 🌟override된 메소드의 원래 method 호출하고 싶다면?
+    ```python
+    class MoreEvilAccount(EvilAccount):
+      def deposit(self, amount):
+        EvilAccount.deposit(self, amount) # base class의 deposit method 호출 -> 근데 이건 deposit이 EvilAccount에 정의된건지 그 위의 base class에 정의된건지
+                                          # 헷갈림. 실제로 이 예제에서도 deposit은 EvilAccount가 아닌 Account에 정의됨. 따라서 그냥 super를 쓰는게
+                                          # 읽는 사람으로 하여금 혼란스럽지 않게 한다. 
+        super(MoreEvilAccount, self).deposit(amount) # py2에서 super를 이용한 방식 (위와 의미 같음)
+        super().deposit(amount) # 🌟py3의 방식
+    ```
+
+- 다중상속
+  - 속성 검색(`.`연산)이 매우 복잡해짐.
+  - 속성 이름이 같을때, 어떤 속성이 먼저 참조될지는 class의 `__mro__`(method resolution order)를 출력해보면 된다. 147p
+    - > 기본적으론 subclass -> base class 순으로 탐색하고, 다중상속에서 먼저 상속된 것을 먼저 참조 한다.   
+    - 이거 원리가 단순 dfs, dfs같은게 아니라 c3 선형화 알고리즘에 의해서 참조 순서를 정한다함. 
+      - 따라서 상속 관계가 어떻냐에 따라, typeerror가 나는 상속 관계가 있을수 있음
+      - 근데 보통 이런경우, 프로그램 설계에 심각한 문제가 있다는 것을 의미. 실전에선 거의 발생하지 않는문제 148p
+      ```python
+      class X(object): pass
+      class Y(X): pass
+      class Z(X,Y): pass # 이거 typeerror남, 일관된 메서드 분석 순석를 정하지 못하기 때문
+      ```
+    - 상속 class에 이름이 같은 속성이 있다면, self대신 직접 class의 이름을 명시 해주면 된다. 
+      - > 🌟 근데 책의 p146예를 잘봐야 하는데, 책의 예에서는 base class의 method안의 self.fee가 문제를 일으켰음. subclass꼐 아니라..
+  - 왜 다중상속을 쓰는지?
+    - > 음.. 뭔가 상속을 위해 제공되는 class들이 있나봄. 이런 class는 직접 객체를 많들어 쓰지 않고, 상속해서씀.. 
+    - > 이걸 책에서는 "혼합 클래스"라고 부르는것 같고, 혼합 클래스 여러개를 상속해서 기능을 구현하기도 하니까 다중상속을 쓴다는듯.  
+    - > 즉, 혼합 클래스는 추가 기능을 제공하기 위한 목적으로 단른 클래스에 혼합될 메서드를 정의한다.. 라고 함
+
+- 다형성 동적 바인딩과 dock type
+  - > 별얘기 아니고 dock type에 대한 말. 즉 `objc.attr()`란 코드가 있다면 objc는 어떤 객체가 와도 상관없음  
+  - > 단. attr method 만 있으면됨. 즉, 속성 검색에서 attr란 메소드가 검색되기만 하면된다.   
+  - > 이런 형태는 의존성을 줄이는데 도움될듯.
+
+- 정적 메서드, 클래스 메서드
