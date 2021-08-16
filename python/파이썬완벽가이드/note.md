@@ -159,7 +159,7 @@
   - 🌟 `x is y` 메모리 상 동일 객체인지.. 
 - 평가 순서
   - 즉, 우선 순위 95p
-- 🌟 conditional expression
+- 🌟 conditional expression (조건 표현식)
   - 복잡해서 안쓰는게 좋긴 한데, 리스트 내포에 쓰면 좋음
   ```python
   if a <= b:
@@ -472,7 +472,7 @@
   - 위와 같은 함수 속성은 `__dict__` 사전에 담긴다.
   - 함수 속성은 함수 객체에 추가 정보를 붙이려는 응용 프로임 워크 같은 특수한 곳에 사용됨
   - 앞선 문서화 문자열 처럼 데코레이터랑 사용하면 문제가 있으므로.. functools의 wraps 데코레이터랑 같이 쓰던지 (데코레이터 만들때 써야함)
-    - 아니면 `call.__dict__update(func.__dict__)` 를 쓴다. 자세한건 138p 참조
+    - 아니면 `call.__dict__.update(func.__dict__)` 를 쓴다. 자세한건 138p 참조
 
 - eval, exec, compile
   - eval 함수는 표현식을 담은 문자열을 실행하고 그 결과를 반환
@@ -524,6 +524,7 @@
   - 🌟 아래 내용 중요
   - subclass에서 `__init__`을 재정의 해서 인스턴스에 새로운 속성 추가가능
     - > 여기 예에서는 속성 추가는 변수 추가를 진행하였다. ( 아마 다른것들도 가능은 할듯.. 예를 들면 method?)
+    - > 🤩 근데, 책에서 속성이라고 표현하는 대부분의 예는 클래스/인스턴스의 변수에 대한 것7
   ```python
   class EvilAccount(Account):
     def __init__(self,name,balance, evilfactor):
@@ -569,3 +570,344 @@
   - > 이런 형태는 의존성을 줄이는데 도움될듯.
 
 - 정적 메서드, 클래스 메서드
+  - 기본적으로 class에 정의 되는 메서드는 인스턴스 메서드로 간주된다.
+    - > 그래서 첫 인자는 self인것.
+  - static method
+    ```python
+    class Foo(object):
+      @staticmethod
+      def add(x,y):
+        pass
+    x = Foo.add(3.4) # static method  호출은 이렇게.. 아마 return은 None객체가 되려나?
+    ```
+    - class namespace에 정의됨 p150
+      - > 뭐.. 일반 인스턴스 함수도 마찬가지..
+    - 🌟 보통 다양한 방식으로 인스턴스를 생성하는 클래스를 위해 사용함
+      - > 그.. class에서 생성자는 하나 두고, static method로 여러 객체 생성 method두던 그방식.  
+      - > TODO: 왜 이래야 한다고 했었지?
+      - 🌟 파이썬에서 클래스는 단 하나의 `__init__` 메소드만 존재 가능. 
+        - 그래서 위와 같이 static method를 이용해서 여러 param으로 객체 생성시 사용
+        - > static method 니까 객체 생성은 그냥 객체 생성해서 return 해주는 방식으로... 작성
+  - class method
+    - > 코드 작성법은 뻔함. 
+    - 왜 필요한가? static method와의 차이는?
+      - 호출시 썻던 class 객체(인스턴스 객체 말고..)를 받을수 있음
+      - 내부에서 `cls()` 로 객체 생성 가능
+      - > 예제를 보면 static method로 객체 생성시, 코딩한 특정 객체만 생성할수 있는데,   
+      - > class method를 쓰면 호출시 사용한 class 객체를 알기 때문에 해당 class로 객체를 생성하거나.. 등등의 작업이 가능
+  - 위 함수들은 당연히 class namespace에 있는거라서,, 인스턴스 객체로 호출이 가능하긴 함 p151 참조
+    - 이 부분은 스몰톡이나 루비 같은 언어와 다른점. 보통 다른 객체지향 언어는 클래스 메서드와 인스턴스 메서드가 엄격히 분리됨
+
+- 프로퍼티
+  - 접근되는 순간 값이 계산되는 특수한 속성
+  - 균일 접근 원칙(uniform access principle)
+    - 기본적으로 class의 인터페이스는 균일할수록 좋다.
+    - property가 없다면, 어떤 속성은 c.radius처럼 접근하고 어떤 속성은 `c.area()` 처럼 메서드로 접근해야함.
+    - 즉 균일하지 못해서 언제 추가로 `()`를 붙여주어야 할지 번거롭게 기억해야함. 
+  - 메서드도 프로퍼티의 한종류
+    - 즉, `()`없이 class의 method를 사용하면 bound method객체가 반환됨 (self에 묶임, 즉 bound mathod는 self명시 없이 호출가능 )
+      - 이 bound method를 생성하는 작업이 배후에서 실행되는 프로퍼티 함수를 통해 되는거라고 함.
+      - > class.method(객체, arg) 형태로 인스턴스 method 직접 호출도 가능. 59p
+    - `@staticmethod @classmethod`로 메서드를 정의하는 것은, 이들 메서드에 대한 접근을 처리하는 프로퍼티 함수를 정의하는 것
+      - 예를 들면 `@staticmethod`의 경우 메서드 함수를 특별히 다른 것으로 감싸거나 추가로 처리 하지 않고 그대로 반환
+    - > 이말이.. 즉 def로 method를 정의하면, `.`으로 메소드 호출시 기본-프로퍼티 함수? 가 먼저 호출되서 self에 bound한 객체를 반환하는거고
+    - > `@staticmethod @classmethod` 로 데코레이트 하면 기본-프로퍼티 함수? 가 사용되지 않는거? 뭐 그런 느낌 인가봄.
+  - setter, deleter 사용하는 법
+  ```python
+  class Foo(object):
+    def __init__(self, name):
+      self.__name = name
+    @property # getter
+    def name(self): 
+      return self.__name
+    @name.setter # setter 
+    def name(self, value): # setter에서 method name은 getter method와 같아야 함 
+      self.__name = value
+    @name.deleter # deleter
+    def name(self): # setter에서 method name은 getter method와 같아야 함 
+      raise TypeError("cant~")
+  ```
+  - > 이거 일반적인 getter, setter라고 생각하면 안됨. 일반적인 get,setter는 변수 캡슐화 목적이지만.  
+  - > property는 접근시 연산이 되는것
+
+- 기술자 (descriptor) 154p
+  - property같은 속성접근 제어의 일반화할수 있는 방법
+  - 특수 메서드인 `__get__() ,__set__(), __delete__()` 메서드를 구현해서, 속성 접근 메커니즘을 가로채 관련 연산들을 제어할수 잇음
+    - > 🌟 이건 154p 예시를 꼭 봐야함. 
+  - > 🌟 기본적으로 class 변수에만 기술자를 활용할 수 있는것으로 보임
+  ```python
+  class Foo(object):
+    name = TypedProperty("name",str) # TypedProperty class에서 위 특수 메서드를 구현함
+  
+  f = Foo()
+  a = f.name # 암묵적으로 Foo.name.__get__(f,Foo) 가 호출됨 
+             # name은 class 변수임. 인스턴스로 접근했지만 해당 scope에 없어서 class scope로 올라감
+  f.name = "test" # Foo.name.__set__(f,"test") 호출됨
+  del f.name
+  ```
+  - > 프로퍼티에서 method도 프로퍼티 함수가 호출된다고 한게 위와 같은 형태가 아닐까 싶음..
+    ```python
+    class Test():
+      def method(self):
+        pass
+    f = Test()
+    f.method # Test.method.__get__(~) 이 호출되는거 아닐까?
+    ```
+  - 🌟 주의사항이 155에 나온다. 이건 getattr, setattr 함수를 기술자에 사용하면서 나타나는 문제를 해결하기 위함 같음
+
+- 데이터 캡슐화와 private 속성
+  - > python class에선 private 속성이 없음
+  - class 변수나 method 이름 앞에 `__`를 붙여주면 name mangling이 자동으로 됨
+    - 이를테면 A class의 `__method`는 `_A__method`로 변환됨
+    - 이걸 이용하면 private인거 처럼 쓸수 있음. 물론 mangling된 이름으로 외부에서 접근도 되긴함.
+      - `__dir__()` method 를 재정의해서 `dir()`로 객체검사후 반환되는 mangling된 이름을 수정해서 전달하면, 아예 외부 접근을 억지로 막을순 있음
+        - > 이러면 사용자가 class의 method 실제 이름을 알지 못하게 하니까
+  - 🌟 프로퍼티 사용시 이걸이용하면 좋다. 
+    - 즉 내부 변수는 `__`을 사용하고 getter, setter는 언더바 없이 이름 짓고
+  - base class에서 method를 위와 같이 쓴경우, 하위 class에서 override될일이 없다. 
+    - > override하려면 `_A__method` 처럼 base class이름 붙여서 method name을 만들어야 하니까, 고의적으로 만들지 않는이상 실수로 override될 일은 없음
+  - 🌟 모듈에서 private이랑 혼돈하는 경우가 많다. 
+    - `from module import*` 로 method 나 모듈 변수가 import되는 거 방지할땐 이름 앞에 `_` 를 붙인다. 
+    - class에서는 속성에 `_` 하나 붙인다고 달라지는게 없음
+
+- 객체 메모리 관리
+  - > link.md의 약한 참조 확인
+  - 객체 생성을 풀어 쓰면 다음과 같다.  (new 로 생성후 init으로 초기화) 157p
+  ```python
+  c = Circle.__new__(Circle, 4.0) # args,kwargs는 init의 값과 동일
+  if isinstance(c, Circle):
+    Circle.__init__(c,4.0) # class로 함수 직접 호출할땐 bound method가 아니니, self 값 줘야함
+  ```
+  - 일반적으로 `__new__()`를 재정의하는 경우는 없는데, 아래와 같은 두가지 예외가 있다. 157p
+    - 변경 불가능한 기반 클래스로부터 상속받는경우
+      - 정수, 문자열, 튜플 같은것은 값의 변경이 불가능한 내장 타입
+      - 이걸 상속받아서 subclass를 만드는 경우 init에서는 전달받은 초기화 값을 수정해 줄수 없음. 
+      - 따라서 new를 override해서 값을 수정해야함
+    - 메타클래스 정의
+  - 인스턴스는 생성되면 reference counting으로 관리
+    - 즉, ref가 0이 되면 인스턴스는 메모리에서 내려감
+  - 🌟 `__del__()`
+    - ref가0일때 인터프리터가 호출해줌
+    - 이걸 직접 정의할 필요가 있는 경우는 드물다
+      - 파일을 닫거나, 네트워크 연결을 끈거나... 할땐 씀
+      - 🌟 근데 인터프리터가 종료시 이걸 호출해 줄거라는 보장이 없기 때문에, 이걸로 자원을 닫는것은 위험
+      - 그냥 close같은 함수를 따로 만들어서 호출하게 하는게 좋음
+      - > 인터프리터 종료라고 표현했는데, 혹시 사용자가 객체 ref가 0이라고 생각해서 del이 호출되는것으로 착각하는것을 의미?  
+      - > 이를 테면 del a를 했어도 순환참조 때문에 a의 ref가 0이 안되어서 `__del__()`이 영영 호출되지 않을수 있다. 
+    - `del a` 했다고 a의 `__del__()`이 호출되는것은 아님, ref가 0이 되어야 호출됨
+  - 🌟 관찰자 패턴
+    - > 이거 책의 예시인데, weakref를 써서 구현하지 않으면 순환참조 되어서 `__del__()`이 영영 호출되지 않음. ref가 0이 되지 않기때문..
+
+- 객체 표현과 속성 바인딩
+  - 인스턴스 안의 data는 `__dict__` 속성으로 접근 가능
+  ```python
+  a = Account()
+  a.__dict__ # 인터프리터 모드에서 실행하면 a의 내용 출력됨
+  a.test = 1 # 이거 가능 🌟, test 변수는 없었지만 이렇게 하면 test 변수가 a에 추가됨. 단 a.test만 한경우는 에러남
+  ```
+  - 인스턴스의 `__class__` 속성으로 자신의 클래스를 확인가능
+  - 클래스도 `__dict__` 속성으로 클래스의 메소드,변수 등 확인 가능
+  - 클래스는 `__bases__` 속성으로 상속한 클래스들 확인 가능
+  - 특수메서드
+    - `obj.name = value` 시 `obj.__setattr__("name", value)` 호출됨
+    - `del obj.name` 시 `obj.__delattr__("name")` 호출됨
+    - 위 두개는 `__dict__`에 값을 수정하거나 제거하는 기본 동작을 제공
+      - 🌟단, target 변수가 프로퍼티나 기술자 였다면, set,del연산은 연결된 프로퍼티나 기술자의 것으로 수행됨
+    - `obj.name` 시 `obj.__getattribute__("name")`이 호출됨
+      - search 순서
+        - 프로퍼티
+        - 내부 `__dict__` 속성
+        - class `__dict__` 속성
+        - base(상속 class)의 내용을 찾는다. 
+        - > 앞쪽에서 속성 찾을떄 내부 namespace에서 class namespace를 찾는 순서의 상세 버전 같음
+      - 위 모든게 실패하면 AttributeError 발생
+    - 특수 메서드를 override할때 원하는 case가 아닌 경우는 기본구현을 호출하게 하는것이 좋음 161p
+      - 기본 구현에서 기술자나 프로퍼티 같은 고급 기능을 알아서 처리해 주므로..
+    - 일반적으로 속성 접근 특수 메서드를 override하는 경우는 드물다.
+      - 기존 객체에 대한 범용 래퍼나,proxy 구현할때는 쓴다. 
+
+- `__slots__`
+  ```python
+  class Account(object):
+    __slot__ = ('name','balance')
+  ```
+  - 사용은 위 예시와 같이 쓰고, slot이 class에 정의 되면
+    - `__dict__`는 이용되지 않는다. 
+    - 따라서 slot에 정의된 속성 외의 속성(변수)은 "인스턴스에서" 지정이 불가
+    - 기존 인스턴스에 새로운 속성이 지정되는 것을 방지
+      - > 근데 이 목적으로 쓰는 경우는 별로 없다고 함
+    - 메모리와 실행속도 성능 최적화에 쓰임 (`__dict__` 안써서 생기는 이점인듯)
+  - slot을 사용하는 base class를 상속했다면, subclass도 slot을 사용해야함.( 새로운 속성을 추가 하지 않더라도..) 162p
+    - 안그러면 subclass는 dict를 쓰는것보다도 느리게 작동함. 그리고 메모리도 더소비
+  - target class의 `__dict__`를  들여다보는 유틸리티, 라이브러리를 쓰게되면 문제 발생할수 있음
+    - 당연하게도.. slot을 쓰면 dict가 없어서.. 
+  - slot이 있다고 하더라도, `__getattribute__, __getattr__, __setattr__`같은 특수 메서드는 영향을 받지 않음
+    - 이것들은 slot을 고려해서 만들어짐
+  - 🌟 메서드나 프로퍼티는 class에 저장되는 것이므로 이들 이름은 slot에 추가할 필요 없음
+    - > 즉 slot은 인스턴스 변수를 위함
+
+- 연산자 오버로딩 164p
+  - > 특별할게 없어서 넘어감
+  - `__int__(), __float__()` 등을 class에서 override가능. 이거 있다고 객체를 자동으로 type casting해주지 않음
+    - 이건 명시적 타입 변환에 쓰는것들.
+  - > 근데 기본 값들 int, float등의 연산은 앞에서 암시적 casting해준다고 했음
+
+- 타입과 클래스 멤버 검사 
+  - `isinstance(), issubclass()` 를 이용한다. 165.
+    - issubclass 는 인자로 둘다 클래스를 넘김
+    - isinstance 는 인자로 객체, 클래스를 넘김 
+      - > 객체게 인자로 전달한 클래스의 객체인지 그리고 그 클래스의 파생 클래스 객체인지 검사하는것. 이경우는 true
+  - duck type은 당연히 위 함수로 check 불가.
+    - 이떄는 `__instancecheck__, __subclasscheck__` 를 override해서 check 가능하게 할수도 있음. 168p 예제 참조
+    - > 근데 이걸이용하는 것보다 java 처럼 abstact/interface를 이용해서 프로그래밍을 하는게 좋은듯.. 이건 `추상 기반 클래스`에 나옴  
+    - > 즉, duck type class를 여러개 두고, 그걸 check 하기 위해 예제처럼 구현하는 것보다, 추상 class를 상속하는게 나은방법 이라는것
+
+- 추상 기반 클래스
+  - abc 모듈을 이용해야 추상 클래스 정의 가능
+  ```python
+  from abc import ABCMeta, abstractmethod, abstractproperty
+  class Foo:
+    __metaclass__ = ABCMeta # py2 방식. py3에서는 class Foo(metaclass=ABCMeta) 라고 씀
+    @abstractmethod
+    def spam(self, a,b ): # subclass에서 반드시 정의해야한다. 안그러면 객체 생성이 안됨
+      pass
+    @absctractproperty # subclass에서 반드시 name 이라는 property를 정의해야함 안그러면 객체 생성이 안됨
+    def name(self):
+      pass
+  ```
+  - > property는 기본적으로 getter를 의미. ( 음.. getter호출시 값이 연산된다는 점은 실제 getter랑 다르긴하지..)
+  - 🌟abstractmethod, absctractproperty는 sublcass에서 같은 이름의 method만 있으면 되고, 인자나 return은 차이가 있어도 된다.
+    - > 즉, 인자나 return에 대한 검사 안함
+    - 마찬가지로 property의 경우 get, set, del을 subclass에서 지원하는지도 확인안함
+  - abstract class는 기존 클래스를 등록하는 기능 제공 168p
+    ```python
+    class Grok(object):
+      pass
+    Foo.register(Grok) # Foo는 위 예제의 Foo임
+  
+    ```
+    - > duck type때문에 지원하는 것으로 보이며, issubclass로 Grok이 Foo인지 check하면 true 나옴. isinstance로 Foo인지 확인해도 true
+
+- 🌟 메타 클래스
+  - 클래스도 객체이다 
+    ```python
+    class Foo(object): pass
+    isinstance(Foo, object) # true가 반환됨
+    type(Foo) # <type 'type'> 즉 Foo class의 타입은 type임.. 이건 base class인 object의 type이기도 함 
+              # 여기서 나온 type이 meta class임
+    ```
+  - 클래스 객체 생성하는 일은 메타클래스가 제어한다. 
+  - class가 정의되면 실행되는 일은 다음과 같다.  (위 예시의 Foo가 정의되면 아래의 일이 일어남)
+    - 이름중 앞에 `__`가 붙은것을이 네임 맹글링 되는것 제외하면 아래의 예시와 같은 일이 일어남
+    ```python
+    class_name = "Foo" #클래스 이름
+    class_parents = (object,) # 기반 클래스들
+    class_body = """ 
+    def __init__(self,x): # Foo class에 정의된 body
+      self.x = x
+    def blah(self):
+      print("hello world")
+    """
+    class_dict = {}  # 앞서 설명이 되었던 class dict임
+
+    # class_dict 안에다가 class_body를 실행
+    # 이렇게 하면 class_dict에 class_body에 있던 method들이 정의됨
+    exec(class_body, globals(), class_dict) # exec는 p138참조
+    
+    # 클래스 객체 Foo를 생성
+    Foo = type(class_name, class_parents, class_dict) # 메타 클래스 type이 호출된것. 즉 이부분의 메타클래스를 다른것으로 정의하면 여길 제어할수 있음
+    ```
+  - 메타 클래스 정의 방법
+    ```python
+    class Foo:
+      __metaclass__ = type # py2 버전
+                           # py3에서는 class Foo(metaclass=type) 으로 쓴다. 
+    ```
+  - 메타 클래스를 지정하지 않으면
+    - base class들중 첫번째 항목을 보고, 첫번째 기반 class의 타입을 메타클래스로 사용한다. 
+    - base class가 없다면?
+      - `__metaclass__` 이름의 전역 변수가 있는지 살펴본다. 이게 있으면 이걸 사용
+      ```python
+      __metaclass__ = type 
+      class Foo: # meta class로 위의 type이 사용됨
+        pass
+      ```
+    - 위 해당하는 것조차 없다면?
+      - 이경우 파이썬은 기본 메타클래스를 사용
+      - py2의 경우 old-style class라고 불리는 types.ClassType이 쓰임, python2.2부터는 사용이 권장되지 않음
+      - py3의 경우 위 예시 처럼 `type()`이 기본 메타클래스로 사용됨
+  - 보통 커스텀 메타 클래스 정의 할때는?
+    - `type()` 메타 클래스를 상속하고, `__init__`이나 `__new__`같은 메서드를 다시 구현
+    ```python
+    # 모든 메서드에 문서화 문자열이 존재하는지 검사하는 메타 클래스
+    class DocMeta(type):
+      def __init__(self, name, bases, attrs): # 위쪽 type() 예시와 param은 같다. 클래스 이름, base class들, 그리고 class_dict
+        for key, value in attrs.items():
+          # 특수 메서드와 개인 메서드는 건너뜀. ( 아마 맹글링은 나중에 진행되나봄?? )
+          if key.startswit("__") : continue
+          # 호출 가능하지 않는 것은 제외
+          if not hasattr(value, "__call__") : countinue # method object의 경우 이 attr가 있음.
+          # 문서화 문자열 검사
+          if not getattr(value, "__doc__"): # hasattr해도 되는거 아닌가?
+            raise TypeError("~~")
+        type.__init__(self, name, bases, attrs)
+
+    # 보통 custom meta class 사용할땐, 다이렉트로 class에 적용하지 않고,
+    # base class를 따로 만들어서 거기에 적용.
+    # 이후 이걸 상속한다. ( 위에서 설명했듯 subclass는 첫번째 bass class의 type을 metaclass로 사용함)
+    class Documented:
+      __metacalss__ = DocMeta # py2 버전,
+                              # py3는 class Documented(metaclass=DocMeta)
+
+    class Foo(Documented):
+      def spam(self, a, b):
+        "this is doc string" # 이거 있어야 __doc__ 속성이 method에 생기고, metaclass에서 raise error가 발생하지 않음
+        pass
+    ```
+  - 보통 위와 같이 클래스의 정의를 들여다보고 필요한 정보를 수집하는데 메타클래스를 사용 
+    - 즉, 생성되는 클래스의 변경은 하지 않고 단지 추가적인 검사만 진행
+  - 메타 클래스를 좀 더 전문적으로 사용하는 경우에는 클래스의 정의를 살펴보는 동시에 변경도 진행
+    - 이경우 클래스 객체가 생성되기 전에 실행되는 `__new__()` 메서드를 재정의 해야 한다. 
+    - 이 메서드에서는 클래스에서 사용될 이름을 변경할 수 있기 때문에, 보통 속성을 기술자나 프로퍼티로 감쌀 때 흔히 사용됨
+    - 예시는 다음과 같다. p154의 "기술자" 절에 나왔던 TypeProperty의 사용을 meta class를 이용해서 재 작성한 버전 p172
+    ```python
+    # TypeProperty class도 조금 다른데, 이건 책을 봐라 
+
+    class TypedMeta(type):
+      def __new__(cls, name, bases, dict) : # 🌟 new의 첫 param은 원래 cls이고, 나머지 부분은 원래 init method의 param과 같아야함
+        slots = []
+        for key, value in dict.items():
+          if isinstance(value, TypedProperty): # 즉 attr가 만들었던 기술자 인경우
+            value.name = "_" + key  # TypedProperty 객체에 name 속성이 있고 이걸 _key값(문자열)으로 교체
+            slot.append(value.name)
+        dict['__slots__'] = slots # slot을 만들어서 넣어줌
+        return type.__new__(cls,name,bases,dict)
+    
+    # 위에서 설명했듯, metaclass를 세팅한 base class를 만듬
+    class Typed:
+      __metaclass__= TypeMeta
+
+    class Foo(Typed):
+      name = TypeProperty(str)
+    ```
+
+- class decorator (클래스 장식자)
+  - 단순히 클래스가 정의되고 난 후 클래스를 registry나 db에 등록하는 것과 같은 몇가지 추가 작업만 수행하고 싶은경우..
+    - meta class대신 class decorater를 이용하는 것이 좋다.
+  - class decorator는 입력으로 클래스를 받고 출력으로 클래스를 반환하는 함수임.
+  ```python
+  registry = {}
+  def register(cls):
+    registry[cls.__clsid__] = cls
+    return cls
+  # 여기서 register 함수는 클래스에 __clsid__ 속성이 있는지 보고 있다면 registry 사전에 등록하는 함수
+  # ? 근데 없는 경우는 error나나?
+
+  @register
+  class Foo(object):
+    __clsid__ = "123-456"
+    def bar(self):
+      pass
+  
+  ```
+  - 장식자는 원한다면 안쓸수도 있어서 편히
