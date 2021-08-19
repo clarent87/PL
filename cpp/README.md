@@ -35,6 +35,10 @@ new user_structure
 : mutable없이 위문제 해결하는 법의 예제..==> 잘못쓴듯
 <https://boycoding.tistory.com/204>
 
+- 순수 가상 함수 여도, 기본 구현은 제공가능 (이러면 큰의미가 있나?)
+  - > 보니까 이펙티브 cpp에서 나왔나봄
+  - <https://rvarago.medium.com/default-implementation-for-pure-virtual-functions-in-c-3c525cc820af>
+
 ## 궁금증
 
 java에서 제네릭으로 특정 base class의 하위 class만 사용가능한 class, method 만드는게 가능한데..
