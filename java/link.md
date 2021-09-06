@@ -48,3 +48,7 @@ https://iamsang.com/blog/2012/08/19/introduction-to-java-bytecode/
 localdate
 > java 8부터는 date 를 개발자들이 안쓴다함. 우형 세미나 spring batch에서 언급됨
 https://java119.tistory.com/52
+
+atomic
+https://beomseok95.tistory.com/225
+https://rightnowdo.tistory.com/entry/JAVA-concurrent-programming-Atomic%EC%9B%90%EC%9E%90%EC%84%B1
