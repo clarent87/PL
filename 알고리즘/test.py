@@ -1,10 +1,25 @@
-#%%
-class test(object):
-    fee = 100
-    def test_method(self):
-        print(self.fee)
 
-a = test()
-a.test_method()
+#%%
+from abc import ABCMeta, abstractmethod
+
+class Foo(metaclass= ABCMeta):
+    @abstractmethod
+    def spam(self, value):
+        pass
+
+class Test(object):
+    pass
+# Foo.register(Test)
+
+a = Test()
+if isinstance(a, Foo):
+    print("isinstance")
+if issubclass(Test, Foo):
+    print("issubclass")
+
+# %%
+from test2 import a, foo_test
+foo_test()
+print(a)
 
 # %%

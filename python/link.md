@@ -7,3 +7,7 @@
 
 - 약한 참조
   - https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=dudwo567890&logNo=130165713734
+
+
+- 인스턴스 생성 절차
+  - https://alphahackerhan.tistory.com/34
