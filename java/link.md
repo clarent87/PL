@@ -52,3 +52,9 @@ https://java119.tistory.com/52
 atomic
 https://beomseok95.tistory.com/225
 https://rightnowdo.tistory.com/entry/JAVA-concurrent-programming-Atomic%EC%9B%90%EC%9E%90%EC%84%B1
+
+어노테이션 접근
+- https://hamait.tistory.com/317
+
+자바쓰레드
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=jjoommnn&logNo=130171358905
