@@ -152,7 +152,7 @@ public class WorkingWithCollections {
 
     System.out.println("--> Merging maps using merge()");
     Map<String, String> everyone2 = new HashMap<>(family);
-    friends2.forEach((k, v) -> everyone2.merge(k, v, (movie1, movie2) -> movie1 + " & " + movie2));
+    friends2.forEach((k, v) -> everyone2.merge(k, v, (movie1, movie2) -> movie1 + " & " + movie2)); // merge는 사용법이 특이
     System.out.println(everyone2);
   }
 

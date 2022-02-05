@@ -17,6 +17,11 @@ public class CreatingCollections {
     creatingLists();
     creatingSets();
     creatingMaps();
+    test();
+  }
+
+  private static void test() {
+
   }
 
   private static void creatingLists() {
@@ -54,7 +59,8 @@ public class CreatingCollections {
     List<String> friends5 = List.of("Raphael", "Olivia", "Thibaut");
     System.out.println(friends5);
     try {
-      friends5.add("Chih-Chun");
+//      friends5.add("Chih-Chun");
+      friends5.set(0, "test");
       System.out.println("We shouldn't get here...");
     }
     catch (UnsupportedOperationException e) {

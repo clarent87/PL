@@ -17,6 +17,7 @@ public class Reducing {
   }
 
   private static int calculateTotalCaloriesWithMethodReference() {
+
     return menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum));
   }
 
