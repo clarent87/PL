@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiPredicate;
 
 public class Lambdas {
 
   public static void main(String... args) {
+
+    // 내 예제
+    BiPredicate<List<String>,String > contains = List::contains;
+
     // 간단한 예제
     Runnable r = () -> System.out.println("Hello!");
     r.run();
