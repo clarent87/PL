@@ -257,11 +257,14 @@
   - collect : 최종연산을 말함
   - 컬렉터(Collector) : collect 최종연산의 인수
     - 변환함수 : 컬렉터에 넘어가는 람다
+    - > Collectors 는 미리 준비된 collector를 만들어 반환하는 method의 집합. 근데 뭐 다양한 method가 더 있기는 함
 
 - Collectors 에서 제공하는 method의 기능은 크게 다음 3가지와 같다 ( static method. 미리 구현된 Collector interface의 구현체들인 Collector를 반환)
   - 스트림 요소를 하나의 값으로 리듀스하고 요약
   - 요소 그룹화
   - 요소 분할
+
+- Collectors method 표 (223)
 
 ## 7. 병렬 데이터 처리와 성능
 

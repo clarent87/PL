@@ -50,7 +50,7 @@ public class NestedFunctionOrderBuilder {
 
   public static double at(double price) {
     return price;
-  }
+  } // 그냥 price 넣으면 이해하기 어려워서 method 이름으로 한번 감싼거.
 
   public static Stock stock(String symbol, String market) {
     Stock stock = new Stock();
