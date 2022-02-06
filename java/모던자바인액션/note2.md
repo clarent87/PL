@@ -64,6 +64,35 @@
 
 ## 11. null 대신 optional 클래스
 
+`Optional<T>` 에 대한 소개
+
+- null 대신 항상 Optional을 쓰는건 좋지 않을수 있음.
+  - 코드 컨텍스트상 변수의값이 null이 가능한 case에 사용하는게 좋다. 
+  - 만약 반드시 null이면 안되는 변수라면, 그냥 에러 나게 두는게 좋다.
+- 초기화를 위한 method 들이 준비 되어 있음
+- map, flatmap 지원함. 스트림의 그것과 유사
+  - **중요 point는 값이 없을때는 아무런 연산이 일어 나지 않는다는것!**
+    - 그래서 값이 null인지 아닌지 체크 없이 map 연산을 수행할수 있음
+    - > 다른 optional 의 연산들도 비슷한 개념이 지원된다. 기본적으로 if문으로 null check하는 것을 없애려는 거라서.
+- 기본적으로 Optional은 반환값을 위해 설계된것, 즉 field 변수를 Optional로 두는것은 설계에 고려되지 않음 (377)
+  - 그래서 optional 변수는 직렬화가 안됨.
+  - 그럼에도 저자는 class에 optional 변수 쓰는것을 권장
+- (자바9)
+  - Optional에 stream method가 추가됨 (378)
+  - > 이거 유용하겠음
+- 디폴트 액션 and unwrap
+  - wrapping 푸는 여러 api 제공함 (379)
+  - (자바9) ifPresentOrElse
+
+- filter도 지원
+  - 스트림의 그것과 유사 하긴하지만.. 동작이 일단 특이한 부분이 있어서. 잘 이해 해야함
+
+- Optional class의 메소드 표 (383)
+- 실용적인 예제
+  - > 내용 좋음. ReadPositiveIntParam
+
+이번 장은 실제 코딩을 해서 익숙해 져야 할것으로 보임
+
 ## 12. 새로운 날짜와 시간 API
 
 ## 13. 디폴트 메서드
