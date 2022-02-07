@@ -27,7 +27,7 @@ public class Ambiguous {
     @Override
     public void hello() {
       A.super.hello();
-    }
+    } // 새로 생긴 문법
 
   }
 

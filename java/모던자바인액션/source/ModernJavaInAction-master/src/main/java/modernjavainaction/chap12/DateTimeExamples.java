@@ -15,10 +15,7 @@ import java.time.Month;
 import java.time.chrono.JapaneseDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -114,6 +111,7 @@ public class DateTimeExamples {
 
     date = date.with(nextOrSame(DayOfWeek.FRIDAY));
     System.out.println(date);
+//    TemporalAdjusters.ofDateAdjuster();
     date = date.with(temporal -> {
       DayOfWeek dow = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
       int dayToAdd = 1;
@@ -147,7 +145,7 @@ public class DateTimeExamples {
   private static void useDateFormatter() {
     LocalDate date = LocalDate.of(2014, 3, 18);
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    DateTimeFormatter italianFormatter = DateTimeFormatter.ofPattern("d. MMMM yyyy", Locale.ITALIAN);
+    DateTimeFormatter italianFormatter = DateTimeFormatter.ofPattern("d. MMMM yyyy", Locale.ITALIAN); // Locale 있음
 
     System.out.println(date.format(DateTimeFormatter.ISO_LOCAL_DATE));
     System.out.println(date.format(formatter));

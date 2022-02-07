@@ -67,7 +67,7 @@
 `Optional<T>` 에 대한 소개
 
 - null 대신 항상 Optional을 쓰는건 좋지 않을수 있음.
-  - 코드 컨텍스트상 변수의값이 null이 가능한 case에 사용하는게 좋다. 
+  - 코드 컨텍스트상 변수의값이 null이 가능한 case에 사용하는게 좋다.
   - 만약 반드시 null이면 안되는 변수라면, 그냥 에러 나게 두는게 좋다.
 - 초기화를 위한 method 들이 준비 되어 있음
 - map, flatmap 지원함. 스트림의 그것과 유사
@@ -95,6 +95,37 @@
 
 ## 12. 새로운 날짜와 시간 API
 
+java.time에 있는 각종 api 소개
+
+- 불변 클래스 (396)
+  
+사용해 보지 않으면 이해하기 어렵고, 내용이 크게 중요하지 않을거 같음
+
 ## 13. 디폴트 메서드
 
-## 14. 자바 모듈 시스템
+- interface에 static method, default method 추가됨
+  - 왜 쓰는지는 대강 알고..
+  - default method는 주로 라이브러리 설계자들이 사용
+
+- 자바8에서는 인터페이스에 static method 가능하므로, static method가 정의된 Collections같은 유틸리티 class를 없애도되지만
+  과거 버전의 호환성을 위해 유틸리티 클래스는 남겨둠.
+
+- 바이너리 호환성, 소스 호환성, 동작 호환성 (416)
+- (417) 내용 중요
+- 디폴트 메서드 활용 패턴 (419)
+  - optional method :
+    - 자바 8 이전에는 interface에서 필요없는 method더라도 impl에서 빈 구현을 했었음
+    - 이제는 interface에서 default method를 주면 되므로.. 안 그래도 됨
+  - multiple inheritance of behavior
+    - 다중상속 가능하다는 얘기고. (물론 class 상속은 하나 + n개의 인터페이스를 이용)
+    - 예시 (421)에서 템플릿 패턴 비슷하게 default method를 사용하는 것을 보임
+
+- 같은 시그니쳐 default 메소드를 impl 했을때 뭐가 호출? (424)
+  - 퀴즈(427) 중요
+  - 신규 문법이 나옴.
+
+- 기본적으로 c++와는 다르게 interface는 변수를 선언하지 못하므로, 다이아몬드 문제가 규칙 3개로 나름 쉽게 해결됨
+
+## 14. 자바 모듈 시스템 (자바9)
+
+> 여기는 소스가 없음
