@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
+// 473 page의 예시
 public class ExecutorServiceExample {
 
   public static void main(String[] args) throws ExecutionException, InterruptedException {

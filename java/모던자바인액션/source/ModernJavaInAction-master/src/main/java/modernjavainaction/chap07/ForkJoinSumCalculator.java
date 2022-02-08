@@ -5,7 +5,7 @@ import static modernjavainaction.chap07.ParallelStreamsHarness.FORK_JOIN_POOL;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
-
+//https://codechacha.com/ko/java-fork-join-pool/
 public class ForkJoinSumCalculator extends RecursiveTask<Long> {
 
   public static final long THRESHOLD = 10_000;
