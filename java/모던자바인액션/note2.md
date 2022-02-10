@@ -144,12 +144,33 @@ java.time에 있는 각종 api 소개
   
 ## 15. CompletableFuture와 리액티브 프로그래밍 컨셉의 기초 (자바9)
 
-아직 까지는 크게 구체적인 내용은 없음
+아직 까지는 크게 구체적인 내용은 없음 ( 뭐가 자바9 인지 판단이 안됨)
 
  
 - Future 형식의 API
 - 리액티브 형식 API
   - > 이거 예제는 비동기도 아니고, 병렬도 안된다.. 
+  
+이해가 안가는 내용들이 꽤 있는데. 일단 핵심은 core 수만큼은 계속 thread를 돌리는 거아닌가 싶네..  
+i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i/o이용.. 이걸 지원하는 java api가 필요  
+
+- box and channel model
+  - 동시성 모델을 설계하고 개념화 하는 방법( 그림 그리는 방법임)
+
+- CompletableFuture 와 combinators
+- CompletableFuture (483)
+  - future를 조합
+    - composablefuture라고 해야 하지 않나? -> 아닌 이유가 나옴 
+  
+역시 예시의 장점이 이해는 가지 않는다.. 
+  
+이번장은 16,17을 위한 사전 소개 인듯.. 
+
+
+
+- 중요 link 
+  - https://umbum.dev/1080
+
 
 ## 16. CompletableFuture : 안정적 비동기 프로그래밍
 

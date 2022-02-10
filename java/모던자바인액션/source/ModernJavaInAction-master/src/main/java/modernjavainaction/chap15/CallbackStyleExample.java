@@ -9,6 +9,7 @@ public class CallbackStyleExample {
     int x = 1337;
     Result result = new Result();
 
+    // 암만 봐도 뭐가 비동기 라는건지..
     f(x, (int y) -> {
       result.left = y;
       System.out.println((result.left + result.right));

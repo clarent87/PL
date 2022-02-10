@@ -5,6 +5,7 @@ import static modernjavainaction.chap15.Functions.g;
 
 class ThreadExample {
 
+  // 아래 예제 보다는 future를 이용하는 것이 코드가 더 깔끔한 장점이 있다.
   public static void main(String[] args) throws InterruptedException {
     int x = 1337;
     Result result = new Result();
