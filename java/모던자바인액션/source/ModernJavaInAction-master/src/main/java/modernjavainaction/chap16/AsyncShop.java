@@ -17,6 +17,7 @@ public class AsyncShop {
     random = new Random(name.charAt(0) * name.charAt(1) * name.charAt(2));
   }
 
+  // getPrice를 비동기로 만들기
   public Future<Double> getPrice(String product) {
 /*
     CompletableFuture<Double> futurePrice = new CompletableFuture<>();
@@ -30,7 +31,8 @@ public class AsyncShop {
     }).start();
     return futurePrice;
 */
-    return CompletableFuture.supplyAsync(() -> calculatePrice(product));
+    // 위 코드와 동일하다고 함 (506). supplyAsync 쓰면 바로 thread로 진입하는듯.
+    return CompletableFuture.supplyAsync(() -> calculatePrice(product)); // forkjoinpool의 excutor 이용한다고함.
   }
 
   private double calculatePrice(String product) {
