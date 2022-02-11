@@ -5,6 +5,7 @@ import static modernjavainaction.chap16.Util.format;
 
 import java.util.Random;
 
+
 public class Shop {
 
   private final String name;
@@ -15,6 +16,11 @@ public class Shop {
     random = new Random(name.charAt(0) * name.charAt(1) * name.charAt(2));
   }
 
+  /**
+   * product에 해당하는 상품의 최저가를 반환
+   * @param product
+   * @return
+   */
   public String getPrice(String product) {
     double price = calculatePrice(product);
     Discount.Code code = Discount.Code.values()[random.nextInt(Discount.Code.values().length)];

@@ -23,9 +23,9 @@ public class AsyncShop {
     new Thread(() -> {
       try {
         double price = calculatePrice(product);
-        futurePrice.complete(price);
+        futurePrice.complete(price); // future에 값 세팅
       } catch (Exception ex) {
-        futurePrice.completeExceptionally(ex);
+        futurePrice.completeExceptionally(ex); // 예외를 future로 전달함
       }
     }).start();
     return futurePrice;
