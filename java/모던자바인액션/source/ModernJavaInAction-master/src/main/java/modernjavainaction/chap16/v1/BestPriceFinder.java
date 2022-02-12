@@ -61,17 +61,15 @@ public class BestPriceFinder {
   public List<String> findPricesInUSD(String product) {
     List<CompletableFuture<Double>> priceFutures = new ArrayList<>();
     for (Shop shop : shops) {
-      // 예제 10-20 시작.
+      // 예제 16-20 시작.
       // 아래 CompletableFuture::join와 호환되도록 futurePriceInUSD의 형식만 CompletableFuture로 바꿈.
       CompletableFuture<Double> futurePriceInUSD =
           CompletableFuture.supplyAsync(() -> shop.getPrice(product))
           .thenCombine(
-              CompletableFuture.supplyAsync(
-                  () ->  ExchangeService.getRate(Money.EUR, Money.USD))
-              // 자바 9에 추가된 타임아웃 관리 기능
-              .completeOnTimeout(ExchangeService.DEFAULT_RATE, 1, TimeUnit.SECONDS),
-              (price, rate) -> price * rate
-          )
+              CompletableFuture
+                      .supplyAsync( () ->  ExchangeService.getRate(Money.EUR, Money.USD) )
+                      .completeOnTimeout(ExchangeService.DEFAULT_RATE, 1, TimeUnit.SECONDS), // 자바 9에 추가된 타임아웃 관리 기능
+              (price, rate) -> price * rate)
           // 자바 9에 추가된 타임아웃 관리 기능
           .orTimeout(3, TimeUnit.SECONDS);
       priceFutures.add(futurePriceInUSD);

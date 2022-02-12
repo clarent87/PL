@@ -130,7 +130,7 @@ java.time에 있는 각종 api 소개
 
 > 여기는 소스가 없음
 
-- 추론하기 쉬운 SW (434) 
+- 추론하기 쉬운 SW (434)
   - 관심사 분리
   - 정보 은닌
 
@@ -146,10 +146,9 @@ java.time에 있는 각종 api 소개
 
 아직 까지는 크게 구체적인 내용은 없음 ( 뭐가 자바9 인지 판단이 안됨)
 
- 
 - Future 형식의 API
 - 리액티브 형식 API
-  - > 이거 예제는 비동기도 아니고, 병렬도 안된다.. 
+  - > 이거 예제는 비동기도 아니고, 병렬도 안된다..
   
 이해가 안가는 내용들이 꽤 있는데. 일단 핵심은 core 수만큼은 계속 thread를 돌리는 거아닌가 싶네..  
 i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i/o이용.. 이걸 지원하는 java api가 필요  
@@ -160,18 +159,17 @@ i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i
 - CompletableFuture 와 combinators
 - CompletableFuture (483)
   - future를 조합
-    - composablefuture라고 해야 하지 않나? -> 아닌 이유가 나옴 
+    - composablefuture라고 해야 하지 않나? -> 아닌 이유가 나옴
   
-역시 예시의 장점이 이해는 가지 않는다.. 
+역시 예시의 장점이 이해는 가지 않는다..
   
-- 리액티브는 기본적으로 옵져버 패턴이랑 거의 유사하네.. 
+- 리액티브는 기본적으로 옵져버 패턴이랑 거의 유사하네..
   - 이번장의 내용많으로는..
   
-이번장은 16,17을 위한 사전 소개 인듯.. 
+이번장은 16,17을 위한 사전 소개 인듯..
 
-- 중요 link 
-  - https://umbum.dev/1080
-
+- 중요 link
+  - <https://umbum.dev/1080>
 
 ## 16. CompletableFuture : 안정적 비동기 프로그래밍
 
@@ -180,7 +178,66 @@ i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i
   - > 일반 Future는 어떻지? ( 값 세팅하는걸 본적이 없음..)
   - > 예외 핸들링이 중요 하네. (505)
     - > thread에서 발생한 예외는 해당 thread에서 처리해야 할듯.. 해당 thread 예외를 전역 exception handler로 보낼수가 있나?
+  - > get 대신 join씀 (509)
 
+- 비동기 api 만들기
+- 비블록 코드 만들기
+  - BestPriceFinderMain
 - type 추론 검토 필요. (람다 및 제네릭)
+  
+- (512)에 병령스트림 보다 CompletableFuture가 장점인 부분이 나옴
+  - custom executor 사용가능
+
+- (513) 스레드 수 조절 방법 나옴
+  - > 근데 스레드는 cpu지원하는 스레드만큼 할당하는게 좋은거 아닌가?
+  - > 아니면 block 당할거 고려해서 더 만들어 두나?? 짜파 쓰레드도 라운드 로빈으로 교체 될테니..?
+
+- (514)
+  - 언제 병렬스트림을 써야 하는지, 언제 completablefuture를 쓰는지 나옴
+    - > 병렬스트림은 forkjoinpool의 기본 pool을 씀 (이거 쓰레드 수가 작나봄./)
+
+- 병령 스틑림 vs completablefuture ( 514 )
+  - > 이거 매우 중요 point  
+  
+뒷쪽 부터 예제가 난해 한듯
+
+- thenApply, thenCompose(521), thenCombine(486)
+  - 이건 completableFuture를 만드는 연산이지 실행 연산이 아님
+  - 둘다 function을 param으로 받음. 즉 future가 실행되면 param으로 받은 람다가 수행되는것.
+  - > param으로 람다를 받는데. 이때 람다의 param 이랑 return은 ? -> 보통 function type 람다이므로 직전 job의 return(get으로 받는) 게 param으로 들어옴
+  - > thenApply나 thenCompose나 뭔차이지..
+
+- get vs join
+  - <https://tedblob.com/completablefuture-join-vs-get/>
+
+- thenApply vs thenCompose
+  - <https://stackoverflow.com/questions/43019126/completablefuture-thenapply-vs-thencompose>
+    - > 이거 답변이 잘나와 있네.. thenCompose는 flatmap 같은 개념임.
+  - (522)
+  - <https://umanking.github.io/2020/10/15/java-completable-future/>
+    - > 이거 진짜 좋다. 책보다 나은듯. 예외처리도 마지막에 조금 나옴
+
+- thenApply vs thenApplyAsync
+  - <https://stackoverflow.com/questions/47489338/what-is-the-difference-between-thenapply-and-thenapplyasync-of-java-completablef>
+  - 풀을 어떤걸 쓰냐 및 스케쥴링의 차이.
+    - > 그래도 아직 이해가 애매하다. 비슷한 얘기는 523에도 나옴
+    - > asynce 아닌것은 같은 스레드 풀에서 바로 실행하고. async는  prejob이 끝나고 async의 람다를 쓰레드 풀에 제출하는 거 같음.. ( 해당 task는 스케쥴링이 다시 됨)
+
+- thenCombine 소개(522)
+
+> SuppressWarning unchecked 때문에 코드에서 에러 unchecked인줄 착각한거 있었음..  
+  
+- 👍 completableFuture에서 제공하는 thenApply 같은 것들은..
+  - > 원래 logic을 쪼개서 i/o 있는 부분 아닌 부분들을 나누어서 completableFuture로 만드는데 도움을 주는.. 그런거 같음
+
+completableFuture는 많이 써봐야 알수 있을거 같다.  
+주의점 정리 필요 ( 병렬스트림보다 유리 할때 등등..)
+병렬스트림의 풀 뭐였는지 확인 필요
+
+- (자바9) 타임아웃 (525)
+  - (498)에는 future의 get으로 타임아웃을 걸었음
+  - > completeOnTimeout에 세팅하는 default 값은 get으로 받을떄 나오는 T 타임의 결과 일듯
+
+- stream에 toArray 있네..
 
 ## 17. 리액티브 프로그래밍 (자바9)

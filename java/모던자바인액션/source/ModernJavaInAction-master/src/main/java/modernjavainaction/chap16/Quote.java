@@ -1,6 +1,6 @@
 package modernjavainaction.chap16;
 
-public class Quote {
+public class  Quote {
 
   private final String shopName;
   private final double price;

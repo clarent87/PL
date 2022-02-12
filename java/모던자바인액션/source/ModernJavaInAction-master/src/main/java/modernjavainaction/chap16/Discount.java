@@ -19,9 +19,10 @@ public class Discount {
     return quote.getShopName() + " price is " + Discount.apply(quote.getPrice(), quote.getDiscountCode());
   }
 
+  // 할인 가격 계산
   private static double apply(double price, Code code) {
     delay();
-    return format(price * (100 - code.percentage) / 100);
+    return format(price * (100 - code.percentage) / 100); // 숫자 출력 format을 제어할수 있음
   }
 
 }

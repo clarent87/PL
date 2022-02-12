@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+// 기본적으로 v1이 16장의 앞쪽 내용으로 보이고 이쪽은 거의 후반부.
 public class BestPriceFinder {
 
   private final List<Shop> shops = Arrays.asList(
@@ -18,6 +19,7 @@ public class BestPriceFinder {
       new Shop("BuyItAll"),
       new Shop("ShopEasy"));
 
+  // 책 514랑 코드 약간 다름.
   private final Executor executor = Executors.newFixedThreadPool(shops.size(), (Runnable r) -> {
     Thread t = new Thread(r);
     t.setDaemon(true);
@@ -42,13 +44,15 @@ public class BestPriceFinder {
 
   public List<String> findPricesFuture(String product) {
     List<CompletableFuture<String>> priceFutures = findPricesStream(product)
-        .collect(Collectors.<CompletableFuture<String>>toList());
+        .collect(Collectors.<CompletableFuture<String>>toList()); // 타입 추론이 안되서 이렇게 한건가?
 
     return priceFutures.stream()
         .map(CompletableFuture::join)
         .collect(Collectors.toList());
   }
 
+  // supplyAsync에는 커스텀 익스큐터를 넣을수 있음음 (519)
+  // 527 내용.
   public Stream<CompletableFuture<String>> findPricesStream(String product) {
     return shops.stream()
         .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(product), executor))
@@ -56,6 +60,7 @@ public class BestPriceFinder {
         .map(future -> future.thenCompose(quote -> CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)));
   }
 
+  // 527 내용.
   public void printPricesStream(String product) {
     long start = System.nanoTime();
     CompletableFuture[] futures = findPricesStream(product)
