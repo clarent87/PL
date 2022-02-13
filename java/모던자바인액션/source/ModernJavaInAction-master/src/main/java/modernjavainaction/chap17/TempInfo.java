@@ -14,6 +14,7 @@ public class TempInfo {
     this.temp = temp;
   }
 
+  // 일종의 팩토리
   public static TempInfo fetch(String town) {
     if (random.nextInt(10) == 0) {
       throw new RuntimeException("Error!");

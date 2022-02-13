@@ -265,6 +265,7 @@
   - 요소 분할
 
 - Collectors method 표 (223)
+- reduce vs collect (206)
 
 ## 7. 병렬 데이터 처리와 성능
 

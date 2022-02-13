@@ -17,6 +17,8 @@ public class TempSubscription implements Subscription {
     this.town = town;
   }
 
+  // 원래 이렇게 쓰는건가?
+  // 역압력? 을 위한 기능인데, 그냥 예시인듯. 실제로는 이렇게 쓰는게 아닌듯. (553)
   @Override
   public void request(long n) {
     executor.submit(() -> {

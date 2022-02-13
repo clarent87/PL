@@ -10,7 +10,9 @@ public class TempSubscriber implements Subscriber<TempInfo> {
   @Override
   public void onSubscribe(Subscription subscription) {
     this.subscription = subscription;
-    subscription.request(1);
+    // 아.. 이거는 subscriber가 data를 요청해서 받아가는 형태네..
+    // 그럼 퍼블리셔는 onNext를 호출해서 data 전달.
+    subscription.request(1); // pubilsher에게 data를 한개만 달라는 요청?
   }
 
   @Override
