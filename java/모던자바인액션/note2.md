@@ -253,3 +253,20 @@ completableFuture는 많이 써봐야 알수 있을거 같다.
 - observable은 map, filter 함수 제공하는데 언제 이게 동작하는지?
 
 ## 21. 결론 그리고 자바의 미래
+
+- 자바 10 
+  - 지역 변수 추론 : 초기값이 있을떄만 가능
+
+> 앞선 내용들을 정리해주는 챕터
+
+## A.기타 언어 업데이트
+
+- 어노테이션 반복
+- java8의 제네릭 param 추론 기능 강화
+
+## B. 라이브러리 업데이트
+
+- map의 computeIfAbsent
+- 여러 스레드에서 읽기 동작보다 갱신 동작을 많이 하면. atomic class보다 LongAdder, LongAccumulator 사용을 권고
+- ConcurrentHashMap
+  - foreach, reduce, search 제공하는데 병렬성 한계값을 세팅해서 사용하는 거라고 함 (669)
