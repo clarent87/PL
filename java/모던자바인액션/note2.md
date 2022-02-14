@@ -170,6 +170,8 @@ i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i
 
 - 중요 link
   - <https://umbum.dev/1080>
+  - https://codechacha.com/ko/java-completable-future/
+    - > 사실 설명은 여기가 쫌더 나은 부분이 있따. 
 
 ## 16. CompletableFuture : 안정적 비동기 프로그래밍
 
@@ -202,7 +204,7 @@ i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i
 뒷쪽 부터 예제가 난해 한듯
 
 - thenApply, thenCompose(521), thenCombine(486)
-  - 이건 completableFuture를 만드는 연산이지 실행 연산이 아님
+  - ~~이건 completableFuture를 만드는 연산이지 실행 연산이 아님~~ 이것들도 실행 연산 같긴함
   - 둘다 function을 param으로 받음. 즉 future가 실행되면 param으로 받은 람다가 수행되는것.
   - > param으로 람다를 받는데. 이때 람다의 param 이랑 return은 ? -> 보통 function type 람다이므로 직전 job의 return(get으로 받는) 게 param으로 들어옴
   - > thenApply나 thenCompose나 뭔차이지..
