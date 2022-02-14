@@ -7,7 +7,11 @@
 
 - ThreadPoolExecutor
   - ThreadPool 만드는것
-  - ExecutorService 를 반환. 보통 개발에 이걸이용해서 task를 넘긴다.
-
+  - ExecutorService 를 반환. 보통 개발에 이걸이용해서 task를 
 - 동작 원리 주의 사항
   - https://leeyh0216.github.io/posts/truth_of_threadpoolexecutor/
+
+
+- forkJoinPool
+  - https://willbfine.tistory.com/469
+  - pool size
