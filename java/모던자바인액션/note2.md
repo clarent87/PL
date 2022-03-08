@@ -190,6 +190,10 @@ i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i
 
 ## 16. CompletableFuture : 안정적 비동기 프로그래밍
 
+- 기본적으로 CompletableFuture 객체 만들고, complete method호출하는것은 따로 thread가 만들어지거나 있는 threadPool에서 실행되는 작업이 아님
+  - CompletableFuture 는 기본적으로 thread pool을 class안에 가지고 있고 forkJoinPool임
+  - 이 풀에서 실행되는 시점은 CompletableFuture.supplyAsync 호출 또는 thenApplyAsync 같은거 호출하는 시점. 
+
 - CompletableFuture 사용법 (503)
   - > complete로 값을 넘길수 있음
   - > 일반 Future는 어떻지? ( 값 세팅하는걸 본적이 없음..)
