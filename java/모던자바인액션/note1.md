@@ -43,6 +43,7 @@
       - 쨋든 람다 이용하는거
 
 - `@FunctionalInterface`
+  - > TODO: 이거랑 람다를 변수에 할당하는거 알아봐서 정리 필요
 - `try-with-resource`
 
 - java.util.function 패키지에는 여러 함수형 인터페이스 제공

@@ -261,6 +261,14 @@ completableFuture는 많이 써봐야 알수 있을거 같다.
 
 - stream에 toArray 있네..
 
+- 추가 
+  - `CompletableFuture.supplyAsync(supplier)` 
+    - 단순히 supplier를 받아서 CompletableFuture 를 반환해주는것이 전부. 
+    - 내부에서는 completeValue를 통해 supplier의 return을 CompletableFuture 에 세팅
+    - 혹시 supplier 에서 예외 발생시 completeThrowable 로 예외 전달해줌
+  - `CompletableFuture`
+    - 이건 그냥 future나 다름없음. 혹은 spring의 deferredResult
+
 ## 17. 리액티브 프로그래밍 (자바9)
 
 - 리액티브 애플리케이션 vs 시스템 (538)
