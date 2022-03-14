@@ -1,5 +1,7 @@
 # java8 feature 
 
+> 이제 이거 필요 없음
+> 
 ## 🌟인터페이스의 defualt method and static method
 
 그동안 interface엔 static method 및 defualt method는 불가 햇음
