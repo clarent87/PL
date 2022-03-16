@@ -234,6 +234,8 @@ i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i
 - thenApply vs thenCompose
   - <https://stackoverflow.com/questions/43019126/completablefuture-thenapply-vs-thencompose>
     - > 이거 답변이 잘나와 있네.. thenCompose는 flatmap 같은 개념임.
+      - `<U> CompletionStage<U> thenApply​(Function<? super T,? extends U> fn)`
+      - `<U> CompletionStage<U> thenCompose​(Function<? super T,? extends CompletionStage<U>> fn)`
   - (522)
   - <https://umanking.github.io/2020/10/15/java-completable-future/>
     - > 이거 진짜 좋다. 책보다 나은듯. 예외처리도 마지막에 조금 나옴
