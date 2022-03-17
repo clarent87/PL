@@ -271,6 +271,12 @@ completableFuture는 많이 써봐야 알수 있을거 같다.
   - `CompletableFuture`
     - 이건 그냥 future나 다름없음. 혹은 spring의 deferredResult
 
+- 추가 
+  - 3가지 방식 예외 처리
+    - https://mincong.io/2020/05/30/exception-handling-in-completable-future/
+  - handle
+    - https://umbum.dev/1080
+
 ## 17. 리액티브 프로그래밍 (자바9)
 
 - 리액티브 애플리케이션 vs 시스템 (538)
