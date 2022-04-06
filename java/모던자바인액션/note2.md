@@ -277,6 +277,13 @@ completableFuture는 많이 써봐야 알수 있을거 같다.
   - handle
     - https://umbum.dev/1080
 
+- 예외 처리 
+  - handle, whenComplete, exceptionally
+    - https://mincong.io/2020/05/30/exception-handling-in-completable-future/
+    - 위 세게 api는 예외를 떤지는게 아니라, 예외가 전달되었을때 행동할 callback임
+    - 각각 차이가 있음
+    - 참고로 예외를 던지는 것은 `CompletableFuture.failedFuture(new RuntimeException("Oops"));` 이런거..
+
 ## 17. 리액티브 프로그래밍 (자바9)
 
 - 리액티브 애플리케이션 vs 시스템 (538)
