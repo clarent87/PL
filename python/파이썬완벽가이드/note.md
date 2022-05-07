@@ -56,6 +56,8 @@
   - 즉, index및 분할 연산 안됨
   - 변경 가능 집합, 불가능 집합 있다.
   - 내장 합수 set, frozenset으로 만듬
+  - > https://dojang.io/mod/page/view.php?id=2314
+  - > 중괄호로 만들수도 있나봄
 - callable type p57
   - 사용자 정의 함수
     - 여러 attribute 존재. `__dic__, __code__` 등
