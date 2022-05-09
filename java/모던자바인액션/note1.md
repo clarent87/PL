@@ -275,6 +275,11 @@
 - Collectors method 표 (223)
 - reduce vs collect (206)
 
+
+- 기타 
+  - https://akageun.github.io/2019/08/06/java-stream-groupby.html
+  - group by의 thread safe 유무
+
 ## 7. 병렬 데이터 처리와 성능
 
 > 일단 생략
