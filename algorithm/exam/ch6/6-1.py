@@ -22,3 +22,9 @@ class Solution:
                          expand(i, i + 2),
                          key=len)
         return result
+
+
+numbers = (1, 2, 3)
+letters = ("A", "B")
+a = list(zip(numbers, letters))
+print(a)
