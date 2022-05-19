@@ -5,7 +5,7 @@
 
 - 리트코드에서 기본으로 import 하고 있는 모듈
   - collections, heapq, functools, itertools, re, sys, math, bisect, from typing import *
-  - https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages-
+  - <https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages>-
 
 - 계획
   - [x] 월 : 5장  
@@ -14,12 +14,12 @@
   - [x] 토 : 8장,
   - [x] 일 : 9장, 10장, 11장
   - [x] 월 : 12장
-  - [x] 화 : 12장 
-  - [x] 수 : 12장 
-  - [ ] 목 : 13장, 14장 
-  - [ ] 금 : 15장, 16장
-  - [ ] 토 : 17, 18, 19장
-  - [ ] 일 : 20, 21, 22, 23 장
+  - [x] 화 : 12장
+  - [x] 수 : 12장
+  - [ ] 목 : 13장
+  - [ ] 금 : 14장
+  - [ ] 토 : 15,16,17
+  - [ ] 일 : 18,19,20, 21, 22, 23 장
 
 - 정리
   - 각 md 파일에 코드와 함꼐 정리
