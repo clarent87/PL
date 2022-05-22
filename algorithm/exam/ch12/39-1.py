@@ -43,5 +43,7 @@ testdic = {
 
 l = list(testdic)
 print(l)
-
 Solution().canFinish(numCourses,prerequisites)
+
+
+
