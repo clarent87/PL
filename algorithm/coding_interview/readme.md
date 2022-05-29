@@ -8,13 +8,7 @@
   - <https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages>-
 
 - 계획
-  - [x] 월 : 14장
-  - [ ] 화 : 15장
-  - [ ] 목 : 17장
-  - [ ] 금 : 18장
-  - [ ] 토 : 19, 20장
-  - [ ] 일 : 21, 22장 (23장)
-
+  - 
 - 정리
   - 각 md 파일에 코드와 함꼐 정리
   - 추후 exam 패키지 내용은 참조 및 test용으로 만 활용
