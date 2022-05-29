@@ -14,3 +14,6 @@ import sys
 
 b = sys.maxsize
 print(b)
+
+a = None > 1
+print(a)
