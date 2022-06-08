@@ -8,9 +8,8 @@
   - <https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages>-
 
 - 계획
-  - 토
-  - 일
-  - 월
+  - [x] 수 : 19장
+  - [] 목 : 20장
 
 - 정리
   - 각 md 파일에 코드와 함꼐 정리
