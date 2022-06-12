@@ -43,3 +43,9 @@ zz= '0b101'
 zz.count('1')
 
 bin(-1 & 0xFFFFFFFF)
+
+
+s = "abcd"
+
+print(len(s))
+print(s[len(s)])
