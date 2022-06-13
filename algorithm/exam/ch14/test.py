@@ -49,3 +49,7 @@ s = "abcd"
 
 print(len(s))
 print(s[len(s)])
+
+zzz = [5,4,3,2,1]
+zzz.sort()
+print(zzz)
