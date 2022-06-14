@@ -21,3 +21,8 @@ s = [3,4]
 
 children = Solution().findContentChildren(g, s)
 print(children)
+
+
+a = [1,2][0]
+
+print(a)

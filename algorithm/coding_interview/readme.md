@@ -8,7 +8,6 @@
   - <https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages>-
 
 - 계획
-  - [] 월 : 21장
   - [] 화 : 22장
   - [] 수 : 23장
   - [] 목 : 23장
