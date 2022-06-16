@@ -8,9 +8,6 @@
   - <https://support.leetcode.com/hc/en-us/articles/360011833974-What-are-the-environments-for-the-programming-languages>-
 
 - 계획
-  - [] 화 : 22장
-  - [] 수 : 23장
-  - [] 목 : 23장
   - 이후 일요일 까지 복습 + 정리 + 외우기.
 
 - 할것
