@@ -53,3 +53,13 @@ print(s[len(s)])
 zzz = [5,4,3,2,1]
 zzz.sort()
 print(zzz)
+
+car = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+
+x = car.popitem()
+
+print(x)
