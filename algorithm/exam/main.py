@@ -14,3 +14,15 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+# test
+
+s = "EAT"
+print(sorted(s))
+
+pal = "pal"
+ps = pal[0:3]
+print(ps)
+
+a = [1,2,3,3]
+print(a.index(3))
