@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5db62e2d-33a7-4c80-b0dd-63310211334f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../coding_interview/파이썬/파이썬.md" beforeDir="false" afterPath="$PROJECT_DIR$/../coding_interview/파이썬/파이썬.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="5db62e2d-33a7-4c80-b0dd-63310211334f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -222,6 +219,7 @@
       <workItem from="1655213880914" duration="2078000" />
       <workItem from="1655391874374" duration="1207000" />
       <workItem from="1655648857989" duration="2000" />
+      <workItem from="1656941741084" duration="595000" />
     </task>
     <servers />
   </component>
@@ -296,8 +294,6 @@
     <SUITE FILE_PATH="coverage/exam$DFS.coverage" NAME="DFS Coverage Results" MODIFIED="1652715632419" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ch12" />
     <SUITE FILE_PATH="coverage/exam$BFS.coverage" NAME="BFS Coverage Results" MODIFIED="1652715587326" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ch12" />
     <SUITE FILE_PATH="coverage/exam$main.coverage" NAME="main Coverage Results" MODIFIED="1651928229027" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/exam$49_1.coverage" NAME="49-1 Coverage Results" MODIFIED="1653199506682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ch14" />
-    <SUITE FILE_PATH="coverage/exam$33_1.coverage" NAME="33-1 Coverage Results" MODIFIED="1652723078344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ch12" />
     <SUITE FILE_PATH="coverage/exam$39_1.coverage" NAME="39-1 Coverage Results" MODIFIED="1652885896846" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ch12" />
     <SUITE FILE_PATH="coverage/exam$6_1.coverage" NAME="6-1 Coverage Results" MODIFIED="1652610881479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ch6" />
     <SUITE FILE_PATH="coverage/exam$8_2.coverage" NAME="8-2 Coverage Results" MODIFIED="1652281252558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ch7" />
