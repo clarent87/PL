@@ -90,8 +90,16 @@
 
 - 지역 변수 캡쳐
   - 익명class일때랑 같음 final 변수만 캡쳐 가능
+  - 람다는 값이 단 한 번만 할당되는 지역변수만을 캡처할 수 있으며,
+  - 만일 람다에서 캡처되는 지역변수의 값을 재할당되는 경우 컴파일 에러가 발생한다.
+  - 즉, 명시적으로 final로 선언되었거나, 실질적으로 final인 지역변수만 람다식 바디에 들어올 수 있다는 것이다.
+  - <https://github.com/woowacourse-study/2022-modern-java-in-action/issues/22>
   - 원리
     - final 지역 변수를 쓰면 지역변수에 접근하는것이 아니라 변수 값이 람다로 넘어가는 거라고 함
+
+- (추가) 람다식은 호출 시 매번 객체가 heap에 생성되는가?
+  - 값 캡처하지 않으면, 싱글톤인데,, 캡쳐하게 되면 매번 생성되는듯.. 
+  - 근데, jvm 스펙상 동작이 정확하게 나오지는 않았나봄.
 
 - 메서드 참조
   - 람다보다 가독성이 좋아서 쓴다고함
@@ -275,9 +283,8 @@
 - Collectors method 표 (223)
 - reduce vs collect (206)
 
-
-- 기타 
-  - https://akageun.github.io/2019/08/06/java-stream-groupby.html
+- 기타
+  - <https://akageun.github.io/2019/08/06/java-stream-groupby.html>
   - group by의 thread safe 유무
 
 ## 7. 병렬 데이터 처리와 성능
