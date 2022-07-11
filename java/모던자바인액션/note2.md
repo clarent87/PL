@@ -106,6 +106,10 @@
 - 실용적인 예제
   - > 내용 좋음. ReadPositiveIntParam
 
+- optional 올바른 사용
+  - <https://homoefficio.github.io/2019/10/03/Java-Optional-%EB%B0%94%EB%A5%B4%EA%B2%8C-%EC%93%B0%EA%B8%B0/>
+  - > 이 내용 어디서 본거 같은데.. 이펙티브 자바?
+
 이번 장은 실제 코딩을 해서 익숙해 져야 할것으로 보임
 
 ## 12. 새로운 날짜와 시간 API
@@ -185,14 +189,14 @@ i/o같은거는 어떻게 비동기로 처리하지?? -> 운영체제 nonblock i
 
 - 중요 link
   - <https://umbum.dev/1080>
-  - https://codechacha.com/ko/java-completable-future/
-    - > 사실 설명은 여기가 쫌더 나은 부분이 있따. 
+  - <https://codechacha.com/ko/java-completable-future/>
+    - > 사실 설명은 여기가 쫌더 나은 부분이 있따.
 
 ## 16. CompletableFuture : 안정적 비동기 프로그래밍
 
 - 기본적으로 CompletableFuture 객체 만들고, complete method호출하는것은 따로 thread가 만들어지거나 있는 threadPool에서 실행되는 작업이 아님
   - CompletableFuture 는 기본적으로 thread pool을 class안에 가지고 있고 forkJoinPool임
-  - 이 풀에서 실행되는 시점은 CompletableFuture.supplyAsync 호출 또는 thenApplyAsync 같은거 호출하는 시점. 
+  - 이 풀에서 실행되는 시점은 CompletableFuture.supplyAsync 호출 또는 thenApplyAsync 같은거 호출하는 시점.
 
 - CompletableFuture 사용법 (503)
   - > complete로 값을 넘길수 있음
@@ -263,23 +267,23 @@ completableFuture는 많이 써봐야 알수 있을거 같다.
 
 - stream에 toArray 있네..
 
-- 추가 
-  - `CompletableFuture.supplyAsync(supplier)` 
-    - 단순히 supplier를 받아서 CompletableFuture 를 반환해주는것이 전부. 
+- 추가
+  - `CompletableFuture.supplyAsync(supplier)`
+    - 단순히 supplier를 받아서 CompletableFuture 를 반환해주는것이 전부.
     - 내부에서는 completeValue를 통해 supplier의 return을 CompletableFuture 에 세팅
     - 혹시 supplier 에서 예외 발생시 completeThrowable 로 예외 전달해줌
   - `CompletableFuture`
     - 이건 그냥 future나 다름없음. 혹은 spring의 deferredResult
 
-- 추가 
+- 추가
   - 3가지 방식 예외 처리
-    - https://mincong.io/2020/05/30/exception-handling-in-completable-future/
+    - <https://mincong.io/2020/05/30/exception-handling-in-completable-future/>
   - handle
-    - https://umbum.dev/1080
+    - <https://umbum.dev/1080>
 
-- 예외 처리 
+- 예외 처리
   - handle, whenComplete, exceptionally
-    - https://mincong.io/2020/05/30/exception-handling-in-completable-future/
+    - <https://mincong.io/2020/05/30/exception-handling-in-completable-future/>
     - 위 세게 api는 예외를 떤지는게 아니라, 예외가 전달되었을때 행동할 callback임
     - 각각 차이가 있음
     - 참고로 예외를 던지는 것은 `CompletableFuture.failedFuture(new RuntimeException("Oops"));` 이런거..
@@ -298,7 +302,7 @@ completableFuture는 많이 써봐야 알수 있을거 같다.
 
 ## 21. 결론 그리고 자바의 미래
 
-- 자바 10 
+- 자바 10
   - 지역 변수 추론 : 초기값이 있을떄만 가능
 
 > 앞선 내용들을 정리해주는 챕터
