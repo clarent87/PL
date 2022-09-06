@@ -288,6 +288,9 @@
   - <https://akageun.github.io/2019/08/06/java-stream-groupby.html>
   - group by의 thread safe 유무
 
+- collectors.toMap의 경우 value에 null이 들어가면 오류남
+  - https://stackoverflow.com/questions/24630963/nullpointerexception-in-collectors-tomap-with-null-entry-values
+
 ## 7. 병렬 데이터 처리와 성능
 
 > 일단 생략
