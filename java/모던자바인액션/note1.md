@@ -101,6 +101,7 @@
 - (추가) 람다식은 호출 시 매번 객체가 heap에 생성되는가?
   - 값 캡처하지 않으면, 싱글톤인데,, 캡쳐하게 되면 매번 생성되는듯.. 
   - 근데, jvm 스펙상 동작이 정확하게 나오지는 않았나봄.
+  - https://stackoverflow.com/questions/27524445/does-a-lambda-expression-create-an-object-on-the-heap-every-time-its-executed
 
 - 메서드 참조
   - 람다보다 가독성이 좋아서 쓴다고함
