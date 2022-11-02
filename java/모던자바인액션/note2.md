@@ -288,6 +288,9 @@ completableFuture는 많이 써봐야 알수 있을거 같다.
     - 각각 차이가 있음
     - 참고로 예외를 던지는 것은 `CompletableFuture.failedFuture(new RuntimeException("Oops"));` 이런거..
 
+- allof()
+  - CompletableFuture를 한번에 Blocking할 때 아주 유용한 메소드
+
 ## 17. 리액티브 프로그래밍 (자바9)
 
 - 리액티브 애플리케이션 vs 시스템 (538)
