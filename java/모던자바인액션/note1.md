@@ -6,6 +6,12 @@
   - [4. 스트림 소개](#4-스트림-소개)
   - [5. 스트림의 활용](#5-스트림의-활용)
   - [6. 스트림으로 데이터 수집](#6-스트림으로-데이터-수집)
+  - [6.1 미리 정의된 Collector](#61-미리-정의된-collector)
+  - [6.2 리듀싱과 요약](#62-리듀싱과-요약)
+  - [6.3 그룹화(210)](#63-그룹화210)
+  - [6.4 분할](#64-분할)
+  - [6.5 Collector 인터페이스](#65-collector-인터페이스)
+  - [6.6 커스텀 컬렉터르르 구현해서 성능 개선하기](#66-커스텀-컬렉터르르-구현해서-성능-개선하기)
   - [7. 병렬 데이터 처리와 성능](#7-병렬-데이터-처리와-성능)
 
 ## 1. 자바 8,9,10에 무슨일이 일어나고 있는가
@@ -97,11 +103,12 @@
   - <https://github.com/woowacourse-study/2022-modern-java-in-action/issues/22>
   - 원리
     - final 지역 변수를 쓰면 지역변수에 접근하는것이 아니라 변수 값이 람다로 넘어가는 거라고 함
+    - > 즉, 지역 변수 선언한 쪽에서 값의 변경이 이루어 지지 않는것을 보장하니까, 값 복사.. 가능한거 인듯.
 
 - (추가) 람다식은 호출 시 매번 객체가 heap에 생성되는가?
-  - 값 캡처하지 않으면, 싱글톤인데,, 캡쳐하게 되면 매번 생성되는듯.. 
+  - 값 캡처하지 않으면, 싱글톤인데,, 캡쳐하게 되면 매번 생성되는듯..
   - 근데, jvm 스펙상 동작이 정확하게 나오지는 않았나봄.
-  - https://stackoverflow.com/questions/27524445/does-a-lambda-expression-create-an-object-on-the-heap-every-time-its-executed
+  - <https://stackoverflow.com/questions/27524445/does-a-lambda-expression-create-an-object-on-the-heap-every-time-its-executed>
 
 - 메서드 참조
   - 람다보다 가독성이 좋아서 쓴다고함
@@ -127,6 +134,7 @@
 - 람다 표현식을 조합할수 있는 유용한 메소드 (124)
   - 그냥 함수 인터페이스에서 제공하는 여러 default method들이 있다는것.
   - > 근데 사용법은 한번 써보지 않으면 정확히 기억하기 어렵다.
+  - > Function의 andThen, Predicate의 negate 이런거
 
 ## 4. 스트림 소개
 
@@ -211,9 +219,16 @@
     - 즉 모든 요소가 버퍼에 추가되어 있어야함
     - 이 경우 data stream의 크기가 크거나 무한이면 문제 발생
     - 이런 연산을 stateful operation이라고 함
+  - state bound, unboud
+    - 연산 결과를 중간에 누적해야 하는데 이 크기가 한정되어 있으면 bound, 무한으로 필요하면 unbound
 
-- 중간 연산 최종 연산 표 (176)
-  - > 👍
+- 중간 연산 과 최종 연산 표 (176) 👍
+  - 중간 연산
+    - filter, distinct(상태 있는 언바운드), takeWhile, dropWhile
+    - skip(상태있는 바운드), limit(상태 있는 바운드)
+    - map, flatMap, sorted(상태 있는 언바운드)
+  - 최종 연산
+    - anyMatch, noneMatch, allMatch, findAny, findFirst, forEach, collect, redue(상태 있는 바운드), count
 
 - 숫자형 스트림
   - 박싱 비용 제거용
@@ -267,9 +282,34 @@
 
 ## 6. 스트림으로 데이터 수집
 
-> 일단 생략. 여기서는 collector 인터페이스 직접 구현 and 미리 구현된 Collector interface의 구현체 사용법을 다룸
+> 여기서는 collector 인터페이스 직접 구현 and 미리 구현된 Collector interface의 구현체 사용법을 다룸
+> 기본적으로 db의 연산들과 매우 유사.( 즉, db 연산을 떠올려서 기능이 있는지 판단하면될듯)
 
-- 기본적으로 중간연산의 작업을 collect에서도 진행할수 있는것으로 보임
+- 내용
+  - Collectors 클래스로 컬렉션 만들고 사용
+  - 데이터 그룹핑, 분할
+  - 커스텀 컬렉터 개발
+
+## 6.1 미리 정의된 Collector
+
+- Collector interface
+  - aggrergate 정의 되어 있음
+  - Collectors 유틸리티 클래스는 자주 사용하는 Collector 구현체를 손쉽게 생성할 수 있는 정적 팩토리 메서드 제공 👍
+    - <https://www.baeldung.com/java-groupingby-collector>
+    - > ex: Collectors.toList(), groupingBy
+    - 여기서 제공하는 메서드 기능은 크게 세가지
+      - 스트림 요소를 하나의 값으로 리듀스하고 요약
+      - 요소 그룹화
+      - 요소 분할 ( 그룹화의 특별한 연산)
+  - 이걸 collect method에 넘기는 것
+  - 할수 있는 것
+    - 합계, 그룹 분류, 다수준 그룹 분류
+
+    ```java
+      // 예시
+        Map<Currency, List<Transaction>> txByCurrencies = tx.stream().collect(groupingBy(Tx::getCurrency));
+      
+    ```
 
 - 용어
   - collect : 최종연산을 말함
@@ -282,6 +322,119 @@
   - 요소 그룹화
   - 요소 분할
 
+## 6.2 리듀싱과 요약
+
+> todo 여기 내용 좋은데, 일단은 생략. 정리 하기에 시간이 없음
+
+## 6.3 그룹화(210)
+
+- Collectors.groupingBy(분류함수)
+  - 분류 함수에 메서드 참조를 넣는데, 만약 분류함수가 복잡해야 하면 메서드 참조 대신 람다 써야함
+    - > 뭔말이냐면, 메서드 참조로 넣을 함수가 있는경우는 메서드 참조 쓰면되는데, 복잡한 조건 처리 method가 만들어진게 없으면
+    - > 람다로 만들어서 사용해야 한다눈것
+
+- 그룹화된 요소 조작 👍
+  - 필터링
+
+    ```java
+      // 500칼로리 넘는 요리만 필터링 하는 예
+      private static Map<Dish.Type, List<Dish>> groupCaloricDishesByType() {
+        // 아래 처럼 필터링 먼저 하고 그룹핑하면 FISH type의 요리에 대한 key는 Map에 나오지 않음 👍
+        // 즉, 원하는 결과는 FISH의 경우 key는 있고 value는 없어야함.
+        //return menu.stream().filter(dish -> dish.getCalories() > 500).collect(groupingBy(Dish::getType));
+
+        // 위 문제를 해결한것, groupingBy method 오버로드된것에 두번쨰 param을 받는게 있음
+        return menu.stream().collect(
+            groupingBy(Dish::getType,
+                filtering(dish -> dish.getCalories() > 500, toList())));
+      }
+
+    ```
+
+  - 매핑
+    - > 위와 유사한 이유떄문에 매핑도 지원하는데,, 딱히 같은 이유라는건 이해가 안되네.
+    - > 아래 예시는 코드 참조.. 해야 약간 이해 감
+
+    ```java
+
+      private static Map<Dish.Type, List<String>> groupDishNamesByType() {
+        return menu.stream().collect(
+            groupingBy(Dish::getType,
+                mapping(Dish::getName, toList())));
+      }
+
+      private static Map<Dish.Type, Set<String>> groupDishTagsByType() {
+        // flatMapping 지원
+        // 이를 통해 중복된 tag( name)을 제거
+        return menu.stream().collect(
+            groupingBy(Dish::getType,
+                flatMapping(dish -> dishTags.get(dish.getName()).stream(), toSet())));
+      }
+
+
+    ```
+
+- 다수준 그룹화(213)
+  - Collectors.groupingBy 는 아래와 같이 두가지 method 존재 ( 더있지만. 책에 언급한건)
+  - 간단하게 쓰는것은 첫번째
+  - 두번째 껏은 위 필터링, 매핑에 쓴건데, 이거 보면 Collector를 받고 있음
+  - 즉, 그룹핑 된 내용에 대해 다시 Collect가능 
+
+  ```java
+
+      public static <T, K> Collector<T, ?, Map<K, List<T>>>
+      groupingBy(Function<? super T, ? extends K> classifier) {
+          return groupingBy(classifier, toList());
+      }
+
+      // 첫번쨰 인수 : 분류 함수
+      // 두번째 인수 : Collector
+      public static <T, K, A, D>
+      Collector<T, ?, Map<K, D>> groupingBy(Function<? super T, ? extends K> classifier,
+                                            Collector<? super T, A, D> downstream) {
+          return groupingBy(classifier, HashMap::new, downstream);
+      }
+
+
+  ```
+
+  - 예시
+
+    ```java
+
+      private static Map<CaloricLevel, List<Dish>> groupDishesByCaloricLevel() {
+        return menu.stream().collect(
+            groupingBy(dish -> {
+              if (dish.getCalories() <= 400) {
+                return CaloricLevel.DIET;
+              }
+              else if (dish.getCalories() <= 700) {
+                return CaloricLevel.NORMAL;
+              }
+              else {
+                return CaloricLevel.FAT;
+              }
+            })
+        );
+      }
+
+    ```
+
+- 서브그룹으로 데이터 수집
+  - > 별내용은 아니고 groupingBy 의 두번쨰에 Collector를 넘길수 있어서 couning, maxBy 같은 Collector를 넘겨서
+  - > data 를 aggregate할수 있다는 내용. 두 함수는 Collectors 유틸에서 제공
+  - > 그리고 collectingAndThen 활용처 나옴.이것도 Collectors에서 제공
+
+## 6.4 분할
+
+## 6.5 Collector 인터페이스
+
+## 6.6 커스텀 컬렉터르르 구현해서 성능 개선하기
+
+----
+
+- 기본적으로 중간연산의 작업을 collect에서도 진행할수 있는것으로 보임
+
 - Collectors method 표 (223)
 - reduce vs collect (206)
 
@@ -290,7 +443,7 @@
   - group by의 thread safe 유무
 
 - collectors.toMap의 경우 value에 null이 들어가면 오류남
-  - https://stackoverflow.com/questions/24630963/nullpointerexception-in-collectors-tomap-with-null-entry-values
+  - <https://stackoverflow.com/questions/24630963/nullpointerexception-in-collectors-tomap-with-null-entry-values>
 
 ## 7. 병렬 데이터 처리와 성능
 
