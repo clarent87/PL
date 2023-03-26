@@ -3,17 +3,30 @@
 - 참조
   - https://blogs.oracle.com/javamagazine/post/java-json-serialization-jackson
   - https://www.baeldung.com/java-record-keyword
+  - https://www.baeldung.com/java-15-new
 
-- record 는 jdk 14에서 추가된개념
-- 레코드란?
-  - 코드(record)란 "데이터 클래스"이며 순수하게 데이터를 보유하기 위한 특수한 종류의 클래스
-  - ntity 혹은 DTO 클래스를 생성할때 사용되면 굉장히 좋을 듯하다.
+## record 소개
 
-## record란?
+### java 16
 
-## jason과의 연계
+> 맞는지 확인 검토 필요 
+> https://openjdk.org/jeps/395
+> https://docs.oracle.com/en/java/javase/14/language/records.html 
+  > 여기 버전 별로 언어 변경점 있음
 
-## 활용.
+
+### java 17
+
+https://docs.oracle.com/en/java/javase/17/language/records.html
+
+## record 사용법
+
+- 제약
+
+## jackson 사용
+
+- DTO로 record를 사용하게 되면 deserialize 및 serialize가 문제 없이 되는지 확인 필요
+
 
 ## 기타
 
