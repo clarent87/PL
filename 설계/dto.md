@@ -1,5 +1,10 @@
 # DTO
 
+- DTO 목적
+  - > 일단 entity들? 을 계층에 직접 넘기는것은 효율적이지 못함.
+  - > 즉, 다음 계층에 필요한 정보만 가공?해서 넘겨 줘야함.
+  - > 대강 이런 느낌인데, 자세한것은 EAA 책 확인 필요
+
 일단 사용 예시는 다음과 같음
 
 ```java
@@ -108,7 +113,10 @@ DTO은 각 계층간 data를 전송하기 위한 객체, 최종적으로는 Enti
       - dao interface구현
       - > 즉 domain에 의존
 
-- DTO는 immutable?
+- Entity -> DTO를 통해서 data가 어떻게 변하는지?
+  - > todo 단순 Entity -> DTO면 그냥 Entity 넘겨도 되지 않나?
+
+- DTO는 immutable? 👍
   - 일단 예제들의 DTO는 immutable임
   - 즉 getter만 존재 final은 아니지만. 객체 생성후 값 바꿀 방법이 없긴함.
   - 상황에 따라 mutable.. 하게 사용할수도 있나봄
@@ -116,6 +124,85 @@ DTO은 각 계층간 data를 전송하기 위한 객체, 최종적으로는 Enti
     - > 근데 참고로 DB2 강좌에서는 @Data 붙여서 DTO만듬. 일단 값 비교 되는것은 맞음.
     - > VO가 불변이라고 하는데, VO == DTO라고 하긴 했음
     - > <https://tecoble.techcourse.co.kr/post/2021-05-16-dto-vs-vo-vs-entity/>
+
+- DTO immutable하게 작성하는 법. 👍
+
+  ```java
+    // @Data는 setter만들어지니까 아래 처럼씀
+    @Getter
+    @RequriredArgsConstructor // final 필드가 없어 추가할 필요 없음
+    @ToString
+    @EqualsAndHashCode
+    public class UserDto {
+      ...
+    }
+
+  ```
+
+    ```java
+    // @Data는 setter만들어지니까 Getter만 만들어서 immutable하게 사용
+    @Getter
+    public class UserDto {
+      ...
+      @JsonProperty ~
+    }
+
+  ```
+
+  ```java
+    @Data
+    @Setter(AccessLevel.NONE) // 세터 사용 못하게..
+    public class UserDto {
+        ...
+    }
+        
+  ```
+
+  ```java
+  // 이게 best같음. 어짜피 fianl은 세터 안만들어짐. 
+
+  @Data
+  public class UserDto {
+
+      private final String email;
+
+      private final String name;
+
+      private Integer age;
+
+      private final LocalDateTime registeredAt;
+
+  }
+
+
+  ```
+
+  ```java
+
+    // 또는 아예 immutable 만들려면 @Value사용
+    // 이거 final class fianl 
+    @Value
+    public class UserDto {
+
+        private String email;
+
+        private String name;
+
+        @With(AccessLevel.PACKAGE)
+        @NonFinal // 두가 같이 써서 package레벨에서 값 접근 해서 세팅하려는듯
+        private Integer age;
+
+        private LocalDateTime registeredAt;
+
+    }
+  
+  ```
+
+- Controller의 param 매핑도 DTO?
+  - 어느 글에서 읽었는데, 이것도 일단 DTO라고 보여짐
+  - DTO사용안하면 Map에 key,value로 data를 받음.
+    - > 이거 폰에 link 있으니 확인하고 정리 요망
+    - > 원래 DTO는 마틴 파울러의 EAA 책에서 처음 소개됨
 
 - 정리
   - 즉 DTO도 의존 방향에 맞추어 구성하면된다.
