@@ -620,8 +620,9 @@ public record Person(String name, String address) {
   - <https://docs.oracle.com/en/java/javase/16/language/records.html>
   - <https://www.baeldung.com/java-16-new-features>
 
-## jackson 사용
+## jackson 사용 (작성중)
 
 - <https://blogs.oracle.com/javamagazine/post/java-json-serialization-jackson>
+- <https://dev.to/brunooliveira/practical-java-16-using-jackson-to-serialize-records-4og4>
 
 - DTO로 record를 사용하게 되면 deserialize 및 serialize가 문제 없이 되는지 확인 필요
