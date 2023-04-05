@@ -24,3 +24,12 @@ def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNod
 
 
 ```
+
+## 3. Longest Substring Without Repeating Characters
+
+이거 나름 알려진 문제 같음. 
+나는 424. 가장 긴 반복 문자 대체 방식과 유사하게 풀었는데, 
+이건 이런 접근 말고 아래와 같은 접근으로 했어야 훨씬 빠름
+
+- 참조
+  - https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/347818/Python3%3A-sliding-window-O(N)-with-explanation
