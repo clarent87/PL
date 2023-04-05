@@ -111,14 +111,15 @@ if x is not None:
 letters = ['A', 'B', 'C', 'D', 'E']
 
 # 내장 함수 이용. 강추!
-for letter in reversed(letters):
+# list면 a.reverse() 도 있고, 이거 O(n)
+for letter in reversed(letters): 
     print(letter)
 
 for idx in range(len(letters) - 1, -1, -1):
     print(letters[idx])
 
 # 슬라이싱 이용
-for letter in letters[::-1]:
+for letter in letters[::-1]: # 슬라이싱 s.reverse() 보다 슬라이싱이 훨씬 빠름
     print(letter)
 
 ```
@@ -131,6 +132,31 @@ print(reversed_letters)
 next(reversed_letters) # 한개 출력됨
 
 ```
+
+- reversed vs reverse 
+  - 두개 차이가 있음.
+  - reverse 
+    - list의 method, 해당 list를 역순으로 배치
+  - resersed
+    - 모든 시퀀스형 가능
+    - return은 iterator
+
+  ```python
+  #https://geekpython.in/reverse-vs-reversed-in-python
+  lst = list('malayalam')
+
+  # Creating a copy of the original list
+  new_lst = lst.copy()
+  # Reversing
+  new_lst.reverse()
+
+  # Comparing the lists
+  if lst == new_lst:
+      print("It's a Palindrome.")
+  else:
+      print("Not a Palindrome.")
+
+  ```
 
 ### 나누기 2 및 바이너리 서치 및 값할당
 
@@ -175,3 +201,4 @@ nums[:] = [10,9]
 print(nums) # 이러면 nums가 [10,9] 가 됨.
 
 ```
+
