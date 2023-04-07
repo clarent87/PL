@@ -33,3 +33,31 @@ def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNod
 
 - 참조
   - https://leetcode.com/problems/longest-substring-without-repeating-characters/discuss/347818/Python3%3A-sliding-window-O(N)-with-explanation
+
+## 567. Permutation in String
+
+- 답은 맞췄는데 30분 걸림
+- 답도 구렸음.
+- 제대로 된건 아래와 같음
+
+    ```python
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        cntr, w = Counter(s1), len(s1)   
+
+        for i in range(len(s2)):
+            if s2[i] in cntr: 
+                cntr[s2[i]] -= 1
+            if i >= w and s2[i-w] in cntr: 
+                cntr[s2[i-w]] += 1
+
+            # counter에 있는 모든것들이 0인지 check
+            # 난아래 처럼 했음
+            # if s1_count.most_common(1)[0][1] == 0:
+            #    return True
+
+            if all([cntr[i] == 0 for i in cntr]): # see optimized code below
+                return True
+
+        return False
+
+    ```
