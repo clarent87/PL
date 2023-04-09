@@ -61,3 +61,52 @@ def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNod
         return False
 
     ```
+
+## 39. 조합의 합 👍
+
+이거 풀때, 12장 그래프 풀이, 순열 조합 처럼 append, pop을 이용해서 path를 작업했음.
+근데, 아래 정답의 경우 `path + [candidates[i]]` 형태로 path 만들어서 넘김. 즉 dfs 후 pop이 필요 없음 
+> 즉 12장 순열 풀이 이런데서 path 만들떄 append, pop 필요 없을듯
+
+```python
+  def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+      result = []
+
+      def dfs(csum, index, path):
+          # 종료 조건
+          if csum < 0:
+              return
+          if csum == 0:
+              result.append(path)
+              return
+
+          for i in range(index, len(candidates))
+              dfs(csum - candidates[i], i, path + [candidates[i]])  👍
+
+      dfs(target, 0, [])
+      return result
+```
+
+```python
+    # 내답
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+        candidates.sort()
+
+        def dfs(element: list, index: int, my_sum: int):
+            print(element, index,my_sum)
+            for i in range(index, len(candidates)):
+                current_sum = candidates[i] + my_sum
+                element.append(candidates[i])
+
+                if current_sum < target:
+                    dfs(element,i, current_sum)
+                elif current_sum == target:
+                    result.append(element[:])
+                element.pop()
+
+        dfs([], 0, 0)
+
+        return result
+
+```
