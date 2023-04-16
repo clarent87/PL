@@ -3,6 +3,7 @@
 ## 확인할것
 
 str typing 안됨
+https://leetcode.com/problems/candy/ -> 이거 옛날에 삼성 문제 였다던.. 그리디네?
 
 ## 주의사항
 
@@ -14,6 +15,11 @@ str typing 안됨
 ### union find
 
 pass
+
+### Kadane's algorithm 
+
+### 플로이드 와샬
+
 
 ## tip
 
