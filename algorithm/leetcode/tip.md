@@ -11,7 +11,14 @@ str typing 안됨
 - 종료 조건 매번 오래걸리네..
   - 종료 조건은 차근차근 검토 해야할듯.
 
+- 역시 경계 조건을 잘 찾아야함. 
+
 ## 추가 알고리즘
+
+
+### Topology Sort
+
+https://m.blog.naver.com/ndb796/221236874984
 
 ### union find
 
@@ -19,9 +26,18 @@ pass
 
 ### Kadane's algorithm
 
+- 53. 최대 서브 배열 문제
+  - https://sustainable-dev.tistory.com/23
+
 ### 플로이드 와샬
 
 ## tip
+
+### deep copy
+
+- `mat: List[List[int]]` 인 경우
+- `dfs(i, j, 0, mat[:])` 로 dfs함수에 mat을 copy해서 넘겼다 하더라도
+- 안의 list는 deepcopy가 되지 않음.
 
 ### DP 접근 법
 
@@ -29,6 +45,8 @@ pass
 - 이게 max-profit-with-k-transactions 문제를 보면 알지만, 표를 통해서 max_diff 수식의 insight를 얻어야함.
 - 그리고 dp 문제 풀이시 table 만드는경우 행렬을 1부터 시작하는게 일반적? 인듯, 즉 0번 행렬은 비워둔다.
   - > 즉 표에 0번행렬은 있지만, 보통 계산값은. 0.. 인듯.
+
+- 그리고 가능하면 접화식을 생각하는게 나름 도움이 된다. 
 
 ### 투포인터
 
