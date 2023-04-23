@@ -1,12 +1,10 @@
 # 정답 맞췄지만 더 올바른 해답 
 
-## 206. Reverse Linked List 👍
+## 206. Reverse Linked List 👍👍
 
 > 3포인터 방안은 맞았음. 풀진 안았지만..
 
-- 여기는 재귀를 이용하는게 더 좋을듯.
-- 재귀도 종류가 있었음. 
-  - > tail? 그거 확인 필요!
+- 여기는 재귀를 이용하는게 더 맞음
 
 ## 19. Remove Nth Node From End of List
 
