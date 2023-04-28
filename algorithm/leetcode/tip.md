@@ -11,23 +11,104 @@ str typing 안됨
 - 종료 조건 매번 오래걸리네..
   - 종료 조건은 차근차근 검토 해야할듯.
 
-- 역시 경계 조건을 잘 찾아야함. 
+- 역시 경계 조건을 잘 찾아야함.
 
 ## 추가 알고리즘
 
+### 진수 변환
+
+- https://m.blog.naver.com/icbanq/221727893563
+  - > 시뮬레이션에서 필요하나봄
+
+### LCA
+
+https://www.crocus.co.kr/660
+
+### dx, dy 테크닉
+
+https://velog.io/@lio8625/dx-dy-%ED%85%8C%ED%81%AC%EB%8B%89
+
+```python
+
+  loop = [(0, 1), (0, -1), (1, 0), (-1, 0)] # 이방식 좋음, 인라인 가능
+  while q:
+      i, j = q.popleft()
+      for r, c in loop:
+          ir, jc = i + r, j + c
+          if ir < 0 or ir >= len(mat) or jc < 0 or jc >= len(mat[0]) or mat[ir][jc] != -1:
+              continue
+          mat[ir][jc] = mat[i][j] + 1
+          q.append((ir,jc))
+  return mat
+
+```
+
+### 오일러 서킷
+
+- 332. 일정 재구성 문제의 알고리즘이 오일러 서킷과 동일한것으로 보임
 
 ### Topology Sort
 
-https://m.blog.naver.com/ndb796/221236874984
+- 특징
+  - 위상 정렬이 가능한지 판단 가능
+  - 위상 정렬이 가능하다면 결과는 무엇인지 판단 가능
+
+- 연관문제
+  - 207. 코스 스케줄
+  - 위상 정렬로 푼 정답은 다음과 같다
+
+  ```python
+      def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+          graph = defaultdict(list)
+          indegree = {}
+
+          # initialising dictionary
+          # 1. 위상 정렬의 그 차수 table
+          for i in range(numCourses):
+              indegree[i] = 0
+
+          # filling graph and indegree dictionaries
+          # 2. graph는 input을 인접리스트로 구현
+          # 3. 차수 table에 차수 추가
+          for child, parent in prerequisites:
+              graph[parent].append(child)
+              indegree[child] += 1
+
+          # 4. 위상 정렬에서 차수 0인 애들 저장하는 큐
+          queue = deque()
+          for key, value in indegree.items():
+              if value == 0:
+                  queue.append(key)
+
+          # 5. 위상 정렬 저장 순서
+          courseSequence = []
+          while queue:
+              course = queue.popleft()
+              courseSequence.append(course)
+              for neighbour in graph[course]:
+                  indegree[neighbour] -= 1
+                  if indegree[neighbour] == 0:
+                      queue.append(neighbour)
+
+          # 6. n개 모두 방문전에 queue가 비게 되면 courseSequence에는 vertex의 일부만 들어가 있음
+          return len(courseSequence) == numCourses
+  ```
+
+- 참고
+  - <https://m.blog.naver.com/ndb796/221236874984>
+  - > 여기 추가 알고리즘들 좋네
 
 ### union find
 
-pass
+pass. 위 link에 있음. 
+
+- table을 만들어서 푸는것
 
 ### Kadane's algorithm
 
 - 53. 최대 서브 배열 문제
-  - https://sustainable-dev.tistory.com/23
+  - <https://sustainable-dev.tistory.com/23>
+  - > 이문제에 특화된 알고리즘으로 보임
 
 ### 플로이드 와샬
 
@@ -39,6 +120,12 @@ pass
 - `dfs(i, j, 0, mat[:])` 로 dfs함수에 mat을 copy해서 넘겼다 하더라도
 - 안의 list는 deepcopy가 되지 않음.
 
+
+### 그리디
+
+- 대부분 우선순위큐로 푼다
+  - python에서는 PriorityQueue 보다는 heapq를 사용함
+
 ### DP 접근 법
 
 - dp같은경우 일단 dp문제라고 판단되면, 차근차근 표를 그리는게 좋을듯.
@@ -46,7 +133,7 @@ pass
 - 그리고 dp 문제 풀이시 table 만드는경우 행렬을 1부터 시작하는게 일반적? 인듯, 즉 0번 행렬은 비워둔다.
   - > 즉 표에 0번행렬은 있지만, 보통 계산값은. 0.. 인듯.
 
-- 그리고 가능하면 접화식을 생각하는게 나름 도움이 된다. 
+- 그리고 가능하면 접화식을 생각하는게 나름 도움이 된다.
 
 ### 투포인터
 
