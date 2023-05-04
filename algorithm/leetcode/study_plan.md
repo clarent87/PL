@@ -1,4 +1,4 @@
-# 스터디 플랜
+# leetcode plan (old)
 
 ## 약한것
 
