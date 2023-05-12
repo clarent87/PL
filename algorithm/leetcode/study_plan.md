@@ -7,7 +7,7 @@
 
 ## 14 레벨1
 
-- binary search 
+- binary search
   - 704, 278, 35
 - two pointers
   - 977, 189
@@ -21,15 +21,15 @@
 - dfs/dfs
   - 733, 695
   - 617, 116
-  - 542, 994 --> not complate
+  - 542, 994
 
 - recursion, backtracking
   - 21, 206
-  - 77, 46, 784 --> 여기서 부터 아래 다 안품
+  - 77, 46, 784
 
-- dp 
-  - 70, 198, 120
+- dp
+  - 70, 198, 120 
 
-- bit manipulation 
-  - 231, 191
+- bit manipulation
+  - 231, 191 --> 여기서 부터 아래 다 안품
   - 190, 136

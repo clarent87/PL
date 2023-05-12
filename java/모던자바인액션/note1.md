@@ -121,6 +121,7 @@
   - > 생성자, 배열 생성자, super 호출에서 사용할 수 있는 특별한 형식의 method 참조도 있음
 
 - 메서드 참조로 바꾸는 법 (117)
+  - https://inpa.tistory.com/entry/JAVA8-%E2%98%95-%EB%9E%8C%EB%8B%A4%EC%8B%9D%EC%9D%84-%EB%8D%94-%EC%A7%A7%EA%B2%8C-%EB%A9%94%EC%86%8C%EB%93%9C-%EC%B0%B8%EC%A1%B0Method-Reference
 - 메서드 참조 호환성 확인 (117,118)
   - > 이부분은 내의견
   - 호환성 확인 이해가 어려운 부분은 2번 형태인데
