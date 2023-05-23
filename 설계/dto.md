@@ -210,3 +210,7 @@ DTO은 각 계층간 data를 전송하기 위한 객체, 최종적으로는 Enti
     - DTO를 마지막에 쓰는애들이 있는 위치에 두면 된다!
       - > 위 예시도 딱 맞음
     - 애매 할땐 별도 package에 둔다!
+
+## 의견
+
+Entity는 mutable인게 맞을듯 하고, DTO들은 immutable인게 맞을거 같음
