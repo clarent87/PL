@@ -116,3 +116,24 @@ def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNod
         return result
 
 ```
+
+## 190 Reverse Bits
+
+```python
+def reverseBits(self, n):
+    return int(bin(n)[2:].zfill(32)[::-1], 2) 
+
+```
+
+- int method의 경우 string 넣어줄떄 2진수 일때 0b가 필요 없네. 
+- 자릿수 zfill로 맞추고.
+
+```python
+def reverseBits(self, n):
+        res = 0
+        for _ in xrange(32):
+            res = (res<<1) + (n&1) # res에 자릿수 하나 넣고 왼쪽으로 민다. 
+            n>>=1
+        return res
+
+```
