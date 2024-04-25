@@ -1,0 +1,180 @@
+{
+  "main": {
+    "id": "7d4fb9f9cbb78553",
+    "type": "split",
+    "children": [
+      {
+        "id": "fd33b5ac04c19cf2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c297a3e4d962008c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9c5598749a32c8b4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "algorithm/coding_interview/자주사용될문법정리.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d3d8f5d55e2c13dc",
+    "type": "split",
+    "children": [
+      {
+        "id": "17c8fff89bd8c868",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1bb7df4723e8f116",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "9d53f5e29e023a25",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "b6daa1046cd4aabc",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "fd390a5ae18d823d",
+    "type": "split",
+    "children": [
+      {
+        "id": "9069d733101e3351",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c2e862d36a12b40e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "3de4563b694cbc9c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "954532e18f78527c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "9168e2942d17c20e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": true,
+      "canvas:Create new canvas": true,
+      "daily-notes:Open today's daily note": true,
+      "templates:Insert template": true,
+      "command-palette:Open command palette": true
+    }
+  },
+  "active": "1bb7df4723e8f116",
+  "lastOpenFiles": [
+    "algorithm/coding_interview/선형 자료구조/7.배열.md",
+    "algorithm/coding_interview/자주사용될문법정리.md",
+    "algorithm/coding_interview/파이썬/6.문자열조작.md",
+    "algorithm/coding_interview/파이썬/파이썬.md",
+    "algorithm/coding_interview/readme.md",
+    "algorithm/leetcode/150plan.md",
+    "algorithm/leetcode/study_plan.md",
+    "algorithm/leetcode/정답alter.md",
+    "algorithm/leetcode/오답.md",
+    "algorithm/coding_interview/비선형 자료구조/16.트라이.md",
+    "algorithm/coding_interview/비선형 자료구조/15.힙.md",
+    "algorithm/coding_interview/비선형 자료구조/14.트리.md",
+    "algorithm/coding_interview/비선형 자료구조/13.최단경로문제.md",
+    "algorithm/coding_interview/비선형 자료구조/12.그래프(기본).md",
+    "README.md"
+  ]
+}
