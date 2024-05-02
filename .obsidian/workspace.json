@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "fd33b5ac04c19cf2",
+        "id": "1773a5a2adf32edf",
         "type": "tabs",
         "children": [
           {
-            "id": "c297a3e4d962008c",
+            "id": "13788df637c36f5a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "9c5598749a32c8b4",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "algorithm/coding_interview/자주사용될문법정리.md",
+                "file": "algorithm/coding_interview/알고리즘/23.다이나믹프로그래밍.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -61,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "런너",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md",
+                "file": "algorithm/coding_interview/알고리즘/23.다이나믹프로그래밍.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md",
+                "file": "algorithm/coding_interview/알고리즘/23.다이나믹프로그래밍.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "algorithm/coding_interview/선형 자료구조/7.배열.md"
+                "file": "algorithm/coding_interview/알고리즘/23.다이나믹프로그래밍.md"
               }
             }
           }
@@ -159,12 +146,20 @@
       "command-palette:Open command palette": true
     }
   },
-  "active": "1bb7df4723e8f116",
+  "active": "13788df637c36f5a",
   "lastOpenFiles": [
+    "algorithm/coding_interview/알고리즘/22.분할정복.md",
+    "algorithm/coding_interview/알고리즘/21.그리디.md",
+    "algorithm/coding_interview/알고리즘/20.슬라이딩윈도우.md",
+    "algorithm/coding_interview/알고리즘/19.비트조작.md",
+    "algorithm/coding_interview/알고리즘/18.이진검색.md",
     "algorithm/coding_interview/선형 자료구조/7.배열.md",
+    "algorithm/coding_interview/알고리즘/17.정렬.md",
+    "algorithm/coding_interview/선형 자료구조/8.연결리스트.md",
     "algorithm/coding_interview/자주사용될문법정리.md",
     "algorithm/coding_interview/파이썬/6.문자열조작.md",
     "algorithm/coding_interview/파이썬/파이썬.md",
+    "algorithm/coding_interview/plan.md",
     "algorithm/coding_interview/readme.md",
     "algorithm/leetcode/150plan.md",
     "algorithm/leetcode/study_plan.md",
